@@ -1,0 +1,14 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<!-- #{welcome /} -->
+
+#{ifnot coops}
+	<p>No coops</p>
+#{/ifnot}
+
+<ul>
+	#{list items:coops, as:'coop'}
+		<li>${coop.id} ${coop.title}</li>
+	#{/list}
+</ul>

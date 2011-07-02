@@ -4,4 +4,5 @@ require:
     - play
     - play -> guice 1.2
     - play -> gae 1.4
-
+    - play -> siena 2.0.1
+    - play -> crudsiena 2.0.1
