@@ -3,6 +3,9 @@
 /.settings/
 /tmp/
 /eclipse/classes/
+/test-result/
+/logs/
+/war/WEB-INF/appengine-generated/
 *.class
 *.pyc
 

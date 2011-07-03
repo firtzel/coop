@@ -1,5 +1,8 @@
 package models;
 
+import com.sun.istack.internal.Nullable;
+
+import play.data.validation.Required;
 import siena.*;
 
 @Table("coops")
@@ -9,16 +12,20 @@ public class Coop extends Model {
     public Long id;
 
     @Column("title")
-    @Max(50) @NotNull
+    @Required @Max(50) @NotNull
 	public String title;
 
     @Column("description")
-    @Max(500)
+    @Required @Max(500) @NotNull
 	public String description;
 
-	public Coop(String title, String description) {
+    @Column("group") @Nullable
+    public CoopGroup group;
+
+	public Coop(String title, String description, @Nullable CoopGroup group) {
 		this.title = title;
 		this.description = description;
+		this.group = group;
 	}
 
     public static Query<Coop> all() {
@@ -27,6 +34,10 @@ public class Coop extends Model {
 
     @Override
     public String toString() {
-    	return title;
+    	if (group == null) {
+    		return title;
+    	} else {
+    		return title + " (part of " + group.toString() + ')';
+    	}
     }
 }
