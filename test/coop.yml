@@ -1,0 +1,19 @@
+# you describe your data using the YAML notation here
+# and then load them using Fixtures.loadModels("<filename>")
+
+CoopGroup(empty):
+  title: empty
+  description: testing
+
+CoopGroup(group):
+  title: group
+  description: testing
+
+Coop(first):
+  title: first
+  description: first coop
+  group: group
+
+Coop(second):
+  title: second
+  description: second coop

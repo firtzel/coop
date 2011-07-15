@@ -1,0 +1,14 @@
+#{extends 'main.html' /}
+#{set title:'Members' /}
+
+#{ifnot members}
+    <p class="info">
+        You don't have any members yet.
+    </p>
+#{/ifnot}
+
+<ol id="members">
+#{list items:members, as:'member'}
+    <li><a href="">${member}</a></li>
+#{/list}
+</ol>

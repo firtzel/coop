@@ -5,7 +5,8 @@
 
 # Home page
 GET     /                                       Application.index
-GET     /coops/                                 Coops.list
+GET     /coops                                  Coops.list
+GET     /members                                Members.index
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

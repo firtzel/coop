@@ -1,0 +1,20 @@
+# you describe your data using the YAML notation here
+# and then load them using Fixtures.loadModels("<filename>")
+
+Member(rosen):
+  name: Rosen
+
+Member(dayan):
+  name: Dayan
+
+User(bob):
+  account: bob@gmail.com
+  member: rosen
+
+User(dude):
+  account: dude@gmail.com
+  member: rosen
+
+User(ben):
+  account: ben@gmail.com
+  member: dayan
