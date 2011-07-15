@@ -40,4 +40,11 @@ public class UserTest extends UnitTest {
 	public void fetchUsers() {
 		assertEquals("[bob@gmail.com (Rosen), dude@gmail.com (Rosen), ben@gmail.com (Dayan)]", User.all().fetch().toString());  
 	}
+
+	@Test
+	public void findByAccount() {
+		assertEquals("[Rosen]", User.findByAccount("bob@gmail.com").toString());
+		assertEquals("[Dayan]", User.findByAccount("ben@gmail.com").toString());
+		assertEquals("[]", User.findByAccount("nobody@gmail.com").toString());
+	}
 }

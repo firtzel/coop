@@ -52,7 +52,7 @@ public class User extends Model {
 		Collection<User> users = all().filter("account", account).fetch();
 		Collection<Member> members = new ArrayList<Member>(users.size());
 		for (User user : users) {
-			members.add(user.member); // TODO should I use getByKey() here too ?!
+			members.add(Member.all().getByKey(user.member.id));
 		}
 		return members;
 	}
