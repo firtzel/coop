@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 import play.data.validation.Required;
 import siena.Column;
+import siena.Filter;
 import siena.Generator;
 import siena.Id;
 import siena.Max;
@@ -35,6 +36,9 @@ public class Coop extends Model {
 	@Column("group")
 	@Nullable
 	public CoopGroup group;
+
+	@Filter("coop")
+	public Query<Sale> sales;
 
 	public Coop(String title, String description, @Nullable CoopGroup group) {
 		this.title = title;

@@ -12,7 +12,7 @@ public class CoopTest extends UnitTest {
 	@Before
 	public void setUp() {
 		SienaFixtures.deleteDatabase();
-		SienaFixtures.loadModels("coop.yml");
+		SienaFixtures.loadModels("coop.yml", "sale.yml");
 	}
 
 	@Test
@@ -43,12 +43,15 @@ public class CoopTest extends UnitTest {
 		assertEquals("first (part of group)", coop.toString());
 		CoopGroup group = CoopGroup.all().getByKey(coop.group.id);
 		assertEquals("group", group.title);
+		assertEquals(2, coop.sales.count());
 	}
 
 	@Test
 	public void coopWithoutGroup() {
 		Query<Coop> coops = Coop.all().filter("title", "second");
 		assertEquals(1, coops.count());
-		assertEquals("second", coops.get().toString());
+		Coop coop = coops.get();
+		assertEquals("second", coop.toString());
+		assertEquals(0, coop.sales.count());
 	}
 }

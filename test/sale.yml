@@ -1,0 +1,27 @@
+# you describe your data using the YAML notation here
+# and then load them using Fixtures.loadModels("<filename>")
+
+Sale(empty):
+  coop: first
+  date: 2011-02-01
+
+Sale(first):
+  coop: first
+  date: 2011-02-08
+
+BaseProduct(lentils):
+  name: lentils
+
+BaseProduct(bread):
+  name: bread
+
+BaseProduct(butter):
+  name: butter
+
+Product(lentils):
+  baseProduct: lentils
+  sale: first
+
+Product(bread):
+  baseProduct: bread
+  sale: first
