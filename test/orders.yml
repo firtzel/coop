@@ -1,0 +1,31 @@
+# you describe your data using the YAML notation here
+# and then load them using Fixtures.loadModels("<filename>")
+
+Order(empty):
+  date: 2011-02-01
+  member: rosen
+
+Order(first):
+  date: 2011-02-05
+  member: rosen
+  sale: first
+
+Order(second):
+  date: 2011-02-06
+  member: dayan
+  sale: first
+
+ProductOrder(lentils-first):
+  order: first
+  product: lentils
+  quantity: 1.5 kg
+
+ProductOrder(bread-first):
+  order: first
+  product: bread
+  quantity: 3 units
+
+ProductOrder(lentils-second):
+  order: second
+  product: lentils
+  quantity: 2 kg

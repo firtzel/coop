@@ -1,8 +1,7 @@
 package models;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import play.data.validation.Required;
 import siena.Column;
@@ -13,11 +12,9 @@ import siena.Id;
 import siena.Model;
 import siena.NotNull;
 import siena.Query;
+import utils.DateUtils;
 
 public class Sale extends Model {
-
-	private static final DateFormat DATE_FORMAT = new SimpleDateFormat(
-			"yyyy-MM-dd");
 
 	// public enum Type { // TODO make this configurable
 	// DRY, FRESH
@@ -51,7 +48,8 @@ public class Sale extends Model {
 
 	@Override
 	public String toString() {
-		return "Date: " + DATE_FORMAT.format(date) + " Coop: "
-				+ coop.all().getByKey(coop.id);
+		// return Objects.toStringHelper(this).toString();
+		return "Date: " + DateUtils.DATE_FORMAT.format(date) + " Coop: "
+				+ Coop.all().getByKey(coop.id);
 	}
 }

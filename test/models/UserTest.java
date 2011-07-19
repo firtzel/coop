@@ -11,7 +11,7 @@ public class UserTest extends UnitTest {
 	@Before
 	public void setUp() {
 		SienaFixtures.deleteDatabase();
-	    SienaFixtures.loadModels("users.yml");
+	    SienaFixtures.loadModels("coops.yml", "users.yml");
 	}
 
 	@Test

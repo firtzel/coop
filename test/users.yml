@@ -3,9 +3,11 @@
 
 Member(rosen):
   name: Rosen
+  coop: first
 
 Member(dayan):
   name: Dayan
+  coop: first
 
 User(bob):
   account: bob@gmail.com

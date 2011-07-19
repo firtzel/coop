@@ -12,7 +12,7 @@ public class CoopTest extends UnitTest {
 	@Before
 	public void setUp() {
 		SienaFixtures.deleteDatabase();
-		SienaFixtures.loadModels("coop.yml", "sale.yml");
+		SienaFixtures.loadModels("coops.yml", "sales.yml", "users.yml");
 	}
 
 	@Test
@@ -44,6 +44,7 @@ public class CoopTest extends UnitTest {
 		CoopGroup group = CoopGroup.all().getByKey(coop.group.id);
 		assertEquals("group", group.title);
 		assertEquals(2, coop.sales.count());
+		assertEquals(2, coop.members.count());
 	}
 
 	@Test
@@ -53,5 +54,6 @@ public class CoopTest extends UnitTest {
 		Coop coop = coops.get();
 		assertEquals("second", coop.toString());
 		assertEquals(0, coop.sales.count());
+		assertEquals(0, coop.members.count());
 	}
 }

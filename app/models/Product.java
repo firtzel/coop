@@ -23,6 +23,8 @@ public class Product extends Model {
 	@NotNull
 	public Sale sale;
 
+	// TODO add more information, such as: price, quantity, etc.
+
 	public Product(BaseProduct baseProduct, Sale sale) {
 		this.baseProduct = baseProduct;
 		this.sale = sale;
@@ -32,4 +34,8 @@ public class Product extends Model {
 		return Model.all(Product.class);
 	}
 
+	@Override
+	public String toString() {
+		return BaseProduct.all().getByKey(baseProduct.id).toString();
+	}
 }

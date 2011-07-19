@@ -23,4 +23,9 @@ public class BaseProduct extends Model {
 	public static Query<BaseProduct> all() {
 		return Model.all(BaseProduct.class);
 	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }

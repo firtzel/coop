@@ -12,7 +12,7 @@ public class SaleTest extends UnitTest {
 	@Before
 	public void setUp() {
 		SienaFixtures.deleteDatabase();
-		SienaFixtures.loadModels("coop.yml", "sale.yml");
+		SienaFixtures.loadModels("coops.yml", "sales.yml");
 	}
 
 	@Test

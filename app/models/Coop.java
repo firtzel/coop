@@ -40,6 +40,9 @@ public class Coop extends Model {
 	@Filter("coop")
 	public Query<Sale> sales;
 
+	@Filter("coop")
+	public Query<Member> members;
+
 	public Coop(String title, String description, @Nullable CoopGroup group) {
 		this.title = title;
 		this.description = description;
