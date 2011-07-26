@@ -33,7 +33,7 @@ public class OrderTest extends UnitTest {
 		Order order = Order.getByDate(DateUtils.DATE_FORMAT.parse("2011-02-05")).get();
 		assertNotNull("Could not retrieve order from 2011-02-05", order);
 		assertEquals("Ordered by Rosen at 2011-02-05 as part of Date: 2011-02-08 Coop: first (part of group)", order.toString());
-		assertEquals("[1.5 kg of lentils, 3 units of bread]", order.products.fetch().toString());
+		assertEquals("[1.5 kg of lentils, 3.0 units of bread]", order.products.fetch().toString());
 	}
 
 	@Test
@@ -41,6 +41,6 @@ public class OrderTest extends UnitTest {
 		Order order = Order.getByDate(DateUtils.DATE_FORMAT.parse("2011-02-06")).get();
 		assertNotNull("Could not retrieve order from 2011-02-06", order);
 		assertEquals("Ordered by Dayan at 2011-02-06 as part of Date: 2011-02-08 Coop: first (part of group)", order.toString());
-		assertEquals("[2 kg of lentils]", order.products.fetch().toString());
+		assertEquals("[2.0 kg of lentils]", order.products.fetch().toString());
 	}
 }

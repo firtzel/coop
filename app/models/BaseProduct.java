@@ -4,6 +4,7 @@ import java.util.Date;
 
 import play.data.validation.Required;
 import siena.*;
+import utils.QuantityType;
 
 public class BaseProduct extends Model {
 
@@ -16,8 +17,21 @@ public class BaseProduct extends Model {
 	@Max(100)
 	public String name;
 
-	public BaseProduct(String name) {
+	// TODO see if we can use QuantityType type here instead of String 
+	@Column("quantity_type")
+	@Required
+	@NotNull
+	public String quantityType;
+
+	@Column("price")
+	@Required
+	@NotNull
+	public float price;
+
+	public BaseProduct(String name, float price, String quantityType) {
 		this.name = name;
+		this.price = price;
+		this.quantityType = quantityType;
 	}
 
 	public static Query<BaseProduct> all() {

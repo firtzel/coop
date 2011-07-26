@@ -11,12 +11,15 @@ Sale(first):
 
 BaseProduct(lentils):
   name: lentils
+  quantityType: kg
 
 BaseProduct(bread):
   name: bread
+  quantityType: units
 
 BaseProduct(butter):
   name: butter
+  quantityType: kg
 
 Product(lentils):
   baseProduct: lentils

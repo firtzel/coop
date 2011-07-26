@@ -18,14 +18,14 @@ Order(second):
 ProductOrder(lentils-first):
   order: first
   product: lentils
-  quantity: 1.5 kg
+  quantity: 1.5
 
 ProductOrder(bread-first):
   order: first
   product: bread
-  quantity: 3 units
+  quantity: 3
 
 ProductOrder(lentils-second):
   order: second
   product: lentils
-  quantity: 2 kg
+  quantity: 2

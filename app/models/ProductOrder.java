@@ -24,22 +24,25 @@ public class ProductOrder extends Model {
 	@Column("quantity")
 	@Required
 	@NotNull
-	@Max(30)
-	public String quantity;
+	public float quantity;
 	
 	@Column("order")
 	@Required
 	@NotNull
 	public Order order;
 	
-	public ProductOrder(Product product, Member member, Quantity quantity, Order order) {
+	public ProductOrder(Product product, Member member, float quantity, Order order) {
 		this.product = product;
-		this.quantity = quantity.toString();
+		this.quantity = quantity;
 		this.order = order;
 	}
 
 	@Override
 	public String toString() {
-		return quantity + " of " + Product.all().getByKey(product.id);
+		Product product = Product.all().getByKey(this.product.id);
+		BaseProduct baseProduct = BaseProduct.all().getByKey(product.baseProduct.id);
+		return quantity + 
+				" " + baseProduct.quantityType + 
+				" of " + product;
 	}
 }

@@ -12,12 +12,12 @@ import play.data.binding.Global;
 import play.data.binding.TypeBinder;
 import utils.Quantity;
 
-@Global
-public class QuantityBinder implements TypeBinder<Quantity> {
-
-	@Override
-	public Object bind(String name, Annotation[] annotations, String value,
-			Class actualClass, Type genericType) throws Exception {
-		return Quantity.fromString(value);
-	}
-}
+//@Global
+//public class QuantityBinder implements TypeBinder<Quantity> {
+//
+//	@Override
+//	public Object bind(String name, Annotation[] annotations, String value,
+//			Class actualClass, Type genericType) throws Exception {
+//		return Quantity.fromString(value);
+//	}
+//}
