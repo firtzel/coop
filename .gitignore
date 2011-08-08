@@ -2,7 +2,7 @@
 /.project
 /.settings/
 /tmp/
-/eclipse/classes/
+/eclipse/
 /test-result/
 /logs/
 /war/WEB-INF/appengine-generated/

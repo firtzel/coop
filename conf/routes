@@ -7,6 +7,7 @@
 GET     /                                       Application.index
 GET     /coops                                  Coops.list
 GET     /members                                Members.index
+GET     /init	                                Init.load
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

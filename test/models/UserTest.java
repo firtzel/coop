@@ -1,5 +1,6 @@
 package models;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,6 +13,11 @@ public class UserTest extends UnitTest {
 	public void setUp() {
 		SienaFixtures.deleteDatabase();
 	    SienaFixtures.loadModels("coops.yml", "users.yml");
+	}
+
+	@After
+	public void tearDown() {
+		SienaFixtures.deleteDatabase();
 	}
 
 	@Test

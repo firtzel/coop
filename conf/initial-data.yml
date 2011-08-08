@@ -1,0 +1,110 @@
+###
+# Coop, CoopGroup 
+
+CoopGroup(empty):
+  title: empty
+  description: testing
+
+CoopGroup(group):
+  title: group
+  description: testing
+
+Coop(first):
+  title: first
+  description: first coop
+  group: group
+
+Coop(second):
+  title: second
+  description: second coop
+
+Coop(third):
+  title: third
+  description: third coop
+  group: group
+
+###
+# Member, User
+
+Member(rosen):
+  name: Rosen
+  coop: first
+
+Member(dayan):
+  name: Dayan
+  coop: first
+
+User(bob):
+  account: bob@gmail.com
+  member: rosen
+
+User(dude):
+  account: dude@gmail.com
+  member: rosen
+
+User(ben):
+  account: ben@gmail.com
+  member: dayan
+
+###
+# Sale, BaseProduct, Product
+
+Sale(empty):
+  coop: first
+  date: 2011-02-01
+
+Sale(first):
+  coop: first
+  date: 2011-02-08
+
+BaseProduct(lentils):
+  name: lentils
+  quantityType: kg
+
+BaseProduct(bread):
+  name: bread
+  quantityType: units
+
+BaseProduct(butter):
+  name: butter
+  quantityType: kg
+
+Product(lentils):
+  baseProduct: lentils
+  sale: first
+
+Product(bread):
+  baseProduct: bread
+  sale: first
+
+###
+# Order, ProductOrder
+
+Order(empty):
+  date: 2011-02-01
+  member: rosen
+
+Order(first):
+  date: 2011-02-05
+  member: rosen
+  sale: first
+
+Order(second):
+  date: 2011-02-06
+  member: dayan
+  sale: first
+
+ProductOrder(lentils-first):
+  order: first
+  product: lentils
+  quantity: 1.5
+
+ProductOrder(bread-first):
+  order: first
+  product: bread
+  quantity: 3
+
+ProductOrder(lentils-second):
+  order: second
+  product: lentils
+  quantity: 2

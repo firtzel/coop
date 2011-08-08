@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.util.Date;
 
 import play.test.UnitTest;
+
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,6 +22,11 @@ public class OrderTest extends UnitTest {
 		SienaFixtures.deleteDatabase();
 		SienaFixtures.loadModels("coops.yml", "sales.yml", "users.yml",
 				"orders.yml");
+	}
+
+	@After
+	public void tearDown() {
+		SienaFixtures.deleteDatabase();
 	}
 
 	@Test
