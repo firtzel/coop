@@ -1,0 +1,26 @@
+#{extends 'main.html' /}
+#{set title:'Coop ' + coop.title /}
+
+#{if coop.members.count() == 0}
+	<p>No members</p>
+#{/if}
+#{else}
+<p>Members
+<ul>
+	#{list items:coop.members.fetch(), as:'member'}
+		<li>${member.id} ${member.name} ${member.users.fetch()}</li>
+	#{/list}
+</ul>
+#{/else}
+
+#{if coop.sales.count() == 0}
+	<p>No sales</p>
+#{/if}
+#{else}
+<p>Sales
+<ul>
+	#{list items:coop.sales.fetch(), as:'sale'}
+		<li>${sale.id} <a href="@{Sales.details(sale.id)}">${sale.date}</a></li>
+	#{/list}
+</ul>
+#{/else}

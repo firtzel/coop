@@ -26,6 +26,10 @@ Coop(third):
 ###
 # Member, User
 
+Member(me):
+  name: me
+  coop: first
+
 Member(rosen):
   name: Rosen
   coop: first
@@ -33,6 +37,10 @@ Member(rosen):
 Member(dayan):
   name: Dayan
   coop: first
+
+User(me):
+  account: test@gmail.com
+  member: me
 
 User(bob):
   account: bob@gmail.com

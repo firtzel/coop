@@ -1,7 +1,5 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
-
-<!-- #{welcome /} -->
+#{set title:'Coops' /}
 
 #{ifnot coops}
 	<p>No coops</p>
@@ -9,6 +7,6 @@
 
 <ul>
 	#{list items:coops, as:'coop'}
-		<li>${coop.id} ${coop.title}</li>
+		<li>${coop.id} <a href="@{Coops.details(coop.id)}">${coop.title}</a></li>
 	#{/list}
 </ul>

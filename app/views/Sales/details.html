@@ -1,0 +1,14 @@
+#{extends 'main.html' /}
+#{set title:'Sale ' + sale.date /}
+
+#{if sale.products.count() == 0}
+	<p>No products</p>
+#{/if}
+#{else}
+<p>Products
+<ul>
+	#{list items:sale.products.fetch(), as:'product'}
+		<li>${product.id} ${product}</li>
+	#{/list}
+</ul>
+#{/else}

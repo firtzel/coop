@@ -1,5 +1,10 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 import javax.persistence.*;
 
 import play.data.validation.Required;
@@ -53,12 +58,25 @@ public class Coop extends Model {
 		return Model.all(Coop.class);
 	}
 
+	public Sale latestSale() {
+		return sales.order("-date").get();
+	}
+
 	@Override
 	public String toString() {
 		if (group == null) {
 			return title;
 		} else {
-			return title + " (part of " + CoopGroup.all().getByKey(group.id).toString() + ')';
+			return title + " (part of "
+					+ CoopGroup.all().getByKey(group.id).toString() + ')';
 		}
+	}
+
+	public static Collection<Coop> findByMember(Collection<Member> members) {
+		Collection<Coop> coops = new ArrayList<Coop>(members.size());
+		for (Member member : members) {
+			coops.add(Coop.all().getByKey(member.coop.id));
+		}
+		return coops;
 	}
 }

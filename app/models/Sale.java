@@ -43,7 +43,7 @@ public class Sale extends Model {
 	}
 
 	public static Query<Sale> all() {
-		return Model.all(Sale.class);
+		return Model.all(Sale.class).order("-date");
 	}
 
 	@Override

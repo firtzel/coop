@@ -15,8 +15,6 @@ public class Application extends Controller {
             Members.index();
         }
         render();
-//    	String name = "Ophir";
-//    	render(name);
     }
 
     public static void login() {
