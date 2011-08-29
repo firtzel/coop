@@ -1,0 +1,16 @@
+#{extends 'main.html' /}
+#{set title:'Member ' + member /}
+
+<p>Member ${member} is part of coop <a href="@{Coops.details(member.coop.id)}">${member.coop.id}</a></p>
+
+#{if member.users.count() == 0}
+	<p>No users</p>
+#{/if}
+#{else}
+<p>Users
+<ul>
+	#{list items:member.users.fetch(), as:'user'}
+		<li>${user.account}</li>
+	#{/list}
+</ul>
+#{/else}

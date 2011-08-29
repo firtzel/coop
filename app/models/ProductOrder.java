@@ -37,12 +37,15 @@ public class ProductOrder extends Model {
 		this.order = order;
 	}
 
+	public String quantity() {
+		Product product = Product.all().getByKey(this.product.id);
+		BaseProduct baseProduct = BaseProduct.all().getByKey(product.baseProduct.id);
+		return quantity +  " " + baseProduct.quantityType;
+	}
+	
 	@Override
 	public String toString() {
 		Product product = Product.all().getByKey(this.product.id);
-		BaseProduct baseProduct = BaseProduct.all().getByKey(product.baseProduct.id);
-		return quantity + 
-				" " + baseProduct.quantityType + 
-				" of " + product;
+		return quantity() + " of " + product;
 	}
 }

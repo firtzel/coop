@@ -14,4 +14,9 @@ public class Members extends ConnectedController {
 		Collection<Member> members = Member.findByUser(getUser());
 		render(members);
 	}
+
+	public static void details(Long id) {
+		Member member = Member.all().getByKey(id);
+		render(member);
+	}
 }

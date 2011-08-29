@@ -7,7 +7,7 @@ import play.data.validation.Required;
 import siena.*;
 
 @Table("member")
-public class Member extends Model {
+public class Member extends Model implements Comparable<Member> {
 
 	@Id(Generator.AUTO_INCREMENT)
 	public Long id;
@@ -42,5 +42,19 @@ public class Member extends Model {
 
 	public static Collection<Member> findByUser(String account) {
 		return User.findByAccount(account);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Member)) {
+			return false;
+		}
+		Member other = (Member) obj;
+		return (compareTo(other) == 0);
+	}
+
+	@Override
+	public int compareTo(Member other) {
+		return this.id.compareTo(other.id);
 	}
 }

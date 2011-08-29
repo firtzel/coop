@@ -48,6 +48,10 @@ public class User extends Model {
 		return account + " (" + Member.all().getByKey(member.id) + ')';
 	}
 
+	public static User getByAccount(String account) {
+		return all().filter("account", account).get();
+	}
+
 	public static Collection<Member> findByAccount(String account) {
 		Collection<User> users = all().filter("account", account).fetch();
 		Collection<Member> members = new ArrayList<Member>(users.size());

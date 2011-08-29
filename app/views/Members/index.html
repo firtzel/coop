@@ -9,6 +9,6 @@
 
 <ol id="members">
 #{list items:members, as:'member'}
-    <li><a href="">${member}</a></li>
+    <li><a href="@{Members.details(member.id)}">${member}</a> of coop <a href="@{Coops.details(member.coop.id)}">${member.coop.id}</a></li>
 #{/list}
 </ol>

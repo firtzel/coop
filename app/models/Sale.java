@@ -37,13 +37,16 @@ public class Sale extends Model {
 	@Filter("sale")
 	public Query<Product> products;
 
+	@Filter("sale")
+	public Query<Order> orders; // TODO add test for this
+
 	public Sale(Date date, Coop coop) {
 		this.date = new Date(date.getTime());
 		this.coop = coop;
 	}
 
 	public static Query<Sale> all() {
-		return Model.all(Sale.class).order("-date");
+		return Model.all(Sale.class);
 	}
 
 	@Override

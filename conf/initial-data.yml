@@ -94,7 +94,7 @@ Order(empty):
 
 Order(first):
   date: 2011-02-05
-  member: rosen
+  member: me
   sale: first
 
 Order(second):

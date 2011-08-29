@@ -24,4 +24,8 @@ public class Application extends Controller {
     public static void logout() {
         GAE.logout("Application.index");
     }
+
+	public static void loginError(String account) {
+		render(account);
+	}
 }

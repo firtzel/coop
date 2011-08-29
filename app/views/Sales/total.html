@@ -1,0 +1,34 @@
+#{extends 'main.html' /}
+#{set title:'Sale ' + sale.date /}
+
+#{if sale.products.count() == 0}
+	<p>No products</p>
+#{/if}
+#{else}
+<p>Products and Orders
+<table>
+  <thead>
+    <th></th>
+    #{list items:members, as:'member'}
+    <th>${member.name}</th>
+    #{/list}
+  </thead>
+  <tbody>
+	#{list items:ordersMap.keySet(), as:'product'}
+	<tr>
+	  <td>${product}</td>
+	  #{list items:members, as:'member'}
+	  <td>
+	  #{if ordersMap.containsKey(product) && ordersMap.get(product).containsKey(member)}
+	  ${ordersMap.get(product).get(member).quantity()}
+	  #{/if}
+	  #{else}
+	  None
+	  #{/else}
+	  </td>
+	  #{/list}
+	</tr>
+	#{/list}
+	</tbody>
+</table>
+#{/else}
