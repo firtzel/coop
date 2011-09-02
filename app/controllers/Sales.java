@@ -35,13 +35,19 @@ public class Sales extends ConnectedController {
 		Sale sale = Sale.all().getByKey(id);
 		Order order = Order.all().filter("member", getMember())
 				.filter("sale", sale).get();
-		Query<ProductOrder> productOrders = order.products;
+		Query<ProductOrder> productOrders = null;
+		if (order != null) {
+			productOrders = order.products;
+		}
 		Map<Product, String> productTypes = new HashMap<Product, String>();
 		Map<Product, Float> productQuantities = new HashMap<Product, Float>();
 		for (Product product : sale.products.fetch()) {
 			BaseProduct baseProduct = BaseProduct.all().getByKey(product.baseProduct.id);
 			productTypes.put(product, baseProduct.quantityType);
-			ProductOrder productOrder = productOrders.filter("product", product).get();
+			ProductOrder productOrder = null;
+			if (productOrders != null) {
+				productOrder = productOrders.filter("product", product).get();
+			}
 			productQuantities.put(product, (productOrder == null ? 0f : productOrder.quantity));
 		}
 		render(sale, order, productTypes, productQuantities);
