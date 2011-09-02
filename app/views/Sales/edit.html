@@ -1,0 +1,31 @@
+#{extends 'main.html' /}
+#{set title:'Sale ' + sale.date /}
+
+#{if sale.products.count() == 0}
+<p>No products</p>
+#{/if}
+#{else}
+<form action="@{Sales.save(sale.id)}" method="post">
+	<table>
+		<thead>
+			<th>Product</th>
+			<th>Quantity</th>
+			<th>Type</th>
+		</thead>
+		<tbody>
+			#{list items:sale.products.fetch(), as:'product'}
+			<tr>
+				<th>${product}</th>
+				<th><input type="text" name="quantity-${product.id}" value="${productQuantities.get(product)}" /></th>
+				<th>${productTypes.get(product)}</th>
+			</tr>
+			#{/list}
+		</tbody>
+	</table>
+	<input type="submit" value="Save" />
+</form>
+
+#{/else}
+
+
+<p><a href="@{Sales.total(sale.id)}">See all orders</a></p>
