@@ -12,6 +12,7 @@
     #{list items:members, as:'member'}
     <th>${member.name}</th>
     #{/list}
+    <th>Total</th>
   </thead>
   <tbody>
 	#{list items:ordersMap.keySet(), as:'product'}
@@ -27,6 +28,7 @@
 	  #{/else}
 	  </td>
 	  #{/list}
+	  <td>${totals.get(product)} ${product.quantityType}</td>
 	</tr>
 	#{/list}
 	</tbody>

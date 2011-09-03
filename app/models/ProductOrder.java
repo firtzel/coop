@@ -31,16 +31,20 @@ public class ProductOrder extends Model {
 	@NotNull
 	public Order order;
 	
+	@Column("quantity_type")
+	@Required
+	@NotNull
+	public String quantityType;
+
 	public ProductOrder(Product product, Member member, float quantity, Order order) {
 		this.product = product;
 		this.quantity = quantity;
 		this.order = order;
+		this.quantityType = product.quantityType;
 	}
 
 	public String quantity() {
-		Product product = Product.all().getByKey(this.product.id);
-		BaseProduct baseProduct = BaseProduct.all().getByKey(product.baseProduct.id);
-		return quantity +  " " + baseProduct.quantityType;
+		return quantity +  " " + quantityType;
 	}
 	
 	@Override

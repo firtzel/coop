@@ -97,13 +97,15 @@ public class Sales extends ConnectedController {
 		List<Order> orders = Order.all().filter("sale", sale).fetch();
 		List<Product> products = sale.products.fetch();
 		Set<Member> members = new TreeSet<Member>();
+		Map<Product, Float> totals = new HashMap<Product, Float>();
 		Map<Product, Map<Member, ProductOrder>> ordersMap = buildOrdersMap(
-				products, orders, members);
-		render(sale, ordersMap, members);
+				products, orders, members, totals);
+		render(sale, ordersMap, members, totals);
 	}
 
 	private static Map<Product, Map<Member, ProductOrder>> buildOrdersMap(
-			List<Product> products, List<Order> orders, Set<Member> members) {
+			List<Product> products, List<Order> orders, 
+			Set<Member> members, Map<Product, Float> totals) {
 		Map<Product, Map<Member, ProductOrder>> ordersMap = new HashMap<Product, Map<Member, ProductOrder>>();
 		for (Product product : products) {
 			ordersMap.put(product, new HashMap<Member, ProductOrder>());
@@ -115,6 +117,9 @@ public class Sales extends ConnectedController {
 				Product product = Product.all().getByKey(
 						productOrder.product.id);
 				ordersMap.get(product).put(member, productOrder);
+				Float total = (totals.containsKey(product) ? totals.get(product) :  0f);
+				total += productOrder.quantity;
+				totals.put(product, total);
 			}
 		}
 		return ordersMap;

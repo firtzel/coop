@@ -28,12 +28,18 @@ public class Product extends Model {
 	@NotNull
 	public float price;
 
-	// TODO add more information, such as: price, quantity, etc.
+	@Column("quantity_type")
+	@Required
+	@NotNull
+	public String quantityType;
 
+	// TODO add more information, such as: price, quantity, etc.
+	
 	public Product(BaseProduct baseProduct, Sale sale, float price) {
 		this.baseProduct = baseProduct;
 		this.sale = sale;
 		this.price = price;
+		this.quantityType = baseProduct.quantityType;
 	}
 
 	public static Query<Product> all() {

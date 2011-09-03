@@ -24,7 +24,9 @@ BaseProduct(butter):
 Product(lentils):
   baseProduct: lentils
   sale: first
+  quantityType: kg
 
 Product(bread):
   baseProduct: bread
   sale: first
+  quantityType: units

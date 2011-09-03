@@ -80,10 +80,12 @@ BaseProduct(butter):
 Product(lentils):
   baseProduct: lentils
   sale: first
+  quantityType: kg
 
 Product(bread):
   baseProduct: bread
   sale: first
+  quantityType: units
 
 ###
 # Order, ProductOrder
@@ -106,13 +108,16 @@ ProductOrder(lentils-first):
   order: first
   product: lentils
   quantity: 1.5
+  quantityType: kg
 
 ProductOrder(bread-first):
   order: first
   product: bread
   quantity: 3
+  quantityType: units
 
 ProductOrder(lentils-second):
   order: second
   product: lentils
   quantity: 2
+  quantityType: kg
