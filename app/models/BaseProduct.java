@@ -17,6 +17,11 @@ public class BaseProduct extends Model {
 	@Max(100)
 	public String name;
 
+	@Column("inventory")
+	@Required
+	@NotNull
+	public float inventory;
+
 	// TODO see if we can use QuantityType type here instead of String 
 	@Column("quantity_type")
 	@Required
@@ -28,9 +33,10 @@ public class BaseProduct extends Model {
 	@NotNull
 	public float price;
 
-	public BaseProduct(String name, float price, String quantityType) {
+	public BaseProduct(String name, float price, float inventory, String quantityType) {
 		this.name = name;
 		this.price = price;
+		this.inventory = inventory;
 		this.quantityType = quantityType;
 	}
 

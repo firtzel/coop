@@ -28,17 +28,22 @@ public class Product extends Model {
 	@NotNull
 	public float price;
 
+	// inventory - the product quantity, excluding purchases from suppliers and members orders 
+	@Column("inventory")
+	@Required
+	@NotNull
+	public float inventory;
+
 	@Column("quantity_type")
 	@Required
 	@NotNull
 	public String quantityType;
 
-	// TODO add more information, such as: price, quantity, etc.
-	
 	public Product(BaseProduct baseProduct, Sale sale, float price) {
 		this.baseProduct = baseProduct;
 		this.sale = sale;
 		this.price = price;
+		this.inventory = baseProduct.inventory;
 		this.quantityType = baseProduct.quantityType;
 	}
 

@@ -38,7 +38,10 @@ public class Sale extends Model {
 	public Query<Product> products;
 
 	@Filter("sale")
-	public Query<Order> orders; // TODO add test for this
+	public Query<ProductOrder> productOrders; // TODO add test for this
+
+	@Filter("sale")
+	public Query<ProductPurchase> productPurchases; // TODO add test for this
 
 	public Sale(Date date, Coop coop) {
 		this.date = new Date(date.getTime());
@@ -49,9 +52,12 @@ public class Sale extends Model {
 		return Model.all(Sale.class);
 	}
 
+	public static Query<Sale> getByDate(Date date) {
+		return all().filter("date", date);
+	}
+
 	@Override
 	public String toString() {
-		// return Objects.toStringHelper(this).toString();
 		return "Date: " + DateUtils.DATE_FORMAT.format(date) + " Coop: "
 				+ Coop.all().getByKey(coop.id);
 	}

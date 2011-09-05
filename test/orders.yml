@@ -1,34 +1,23 @@
 # you describe your data using the YAML notation here
 # and then load them using Fixtures.loadModels("<filename>")
 
-Order(empty):
-  date: 2011-02-01
-  member: rosen
-
-Order(first):
-  date: 2011-02-05
-  member: rosen
-  sale: first
-
-Order(second):
-  date: 2011-02-06
-  member: dayan
-  sale: first
-
 ProductOrder(lentils-first):
-  order: first
+  member: rosen
+  sale: first
   product: lentils
   quantity: 1.5
   quantityType: kg
 
 ProductOrder(bread-first):
-  order: first
+  member: rosen
+  sale: first
   product: bread
   quantity: 3
   quantityType: units
 
 ProductOrder(lentils-second):
-  order: second
+  member: dayan
+  sale: first
   product: lentils
   quantity: 2
   quantityType: kg

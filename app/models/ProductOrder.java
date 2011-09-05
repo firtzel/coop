@@ -1,7 +1,5 @@
 package models;
 
-import java.math.BigDecimal;
-
 import play.data.validation.Required;
 import siena.Column;
 import siena.Generator;
@@ -21,25 +19,31 @@ public class ProductOrder extends Model {
 	@NotNull
 	public Product product;
 
+	@Column("member")
+	@Required
+	@NotNull
+	public Member member;
+
+	@Column("sale")
+	@Required
+	@NotNull
+	public Sale sale;
+
 	@Column("quantity")
 	@Required
 	@NotNull
 	public float quantity;
-	
-	@Column("order")
-	@Required
-	@NotNull
-	public Order order;
 	
 	@Column("quantity_type")
 	@Required
 	@NotNull
 	public String quantityType;
 
-	public ProductOrder(Product product, Member member, float quantity, Order order) {
+	public ProductOrder(Product product, Member member, Sale sale, float quantity) { //, Order order) {
 		this.product = product;
+		this.member = member;
+		this.sale = sale;
 		this.quantity = quantity;
-		this.order = order;
 		this.quantityType = product.quantityType;
 	}
 

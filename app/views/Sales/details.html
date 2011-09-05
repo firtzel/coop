@@ -13,13 +13,13 @@
 </ul>
 #{/else}
 
-#{if (order == null || order.products.count() == 0)}
+#{if (productOrders.count() == 0)}
 	<p>No order has been placed</p>
 #{/if}
 #{else}
 <p>Current Order:
 <ul>
-	#{list items:order.products.fetch(), as:'product'}
+	#{list items:productOrders.fetch(), as:'product'}
 		<li>${product.id} ${product}</li>
 	#{/list}
 </ul>

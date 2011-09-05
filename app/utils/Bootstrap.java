@@ -15,6 +15,7 @@ public class Bootstrap extends Job {
 		// SienaFixtures.loadModels("initial-data.yml");
 		// }
 		Logger.info("running Bootstrap.loadInitialData()");
+		SienaFixtures.deleteDatabase();
 		SienaFixtures.loadModels("initial-data.yml");
 	}
 

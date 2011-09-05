@@ -1,0 +1,21 @@
+#{extends 'main.html' /}
+#{set title:'Coop ' + coop.title + ' Inventory' /}
+
+<table>
+	<thead>
+		<th></th>
+		#{list items:sales, as:'sale'}
+		<th>${sale.date}</th>
+		#{/list}
+	</thead>
+	<tbody>
+		#{list items:baseProducts, as:'product'}
+		<tr>
+			<td>${product}</td>
+			#{list items:sales, as:'sale'}
+			<td>${intentory.get(sale).get(product)}</td>
+			#{/list}
+		</tr>
+		#{/list}
+	</tbody>
+</table>
