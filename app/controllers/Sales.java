@@ -23,10 +23,26 @@ import siena.Query;
 
 public class Sales extends ConnectedController {
 
-	public static void details(Long id) {
+	public static void myOrders(Long id) {
 		Sale sale = Sale.all().getByKey(id);
 		Query<ProductOrder> productOrders = sale.productOrders.filter("member", getMember());
-		render(sale, productOrders);
+		renderTemplate("sales/my_orders.html", sale, productOrders);
+	}
+
+	public static void orders(Long id) {
+		Sale sale = Sale.all().getByKey(id);
+		List<Product> products = sale.products.fetch();
+		List<ProductOrder> productOrders = sale.productOrders.fetch();
+		List<Member> members = sale.getCoop().members.fetch();
+		Map<Long, Map<Long, ProductOrder>> memberOrders = new HashMap<Long, Map<Long, ProductOrder>>();
+		for (ProductOrder order : productOrders) {
+			Long memberId = order.member.id;
+			if (!memberOrders.containsKey(memberId)) {
+				memberOrders.put(memberId, new HashMap<Long, ProductOrder>());
+			}
+			memberOrders.get(memberId).put(order.product.id, order);
+		}
+		renderTemplate("sales/orders.html", sale, members, products, memberOrders);
 	}
 
 	public static void edit(Long id) {
@@ -68,7 +84,7 @@ public class Sales extends ConnectedController {
 				}
 			}
 		}
-		details(id);
+		myOrders(id);
 	}
 
 	public static void total(Long id) {

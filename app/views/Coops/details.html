@@ -20,7 +20,8 @@
 <p>Sales
 <ul>
 	#{list items:coop.sales.fetch(), as:'sale'}
-		<li>${sale.id} <a href="@{Sales.details(sale.id)}">${sale.date}</a></li>
+		<li>${sale.id} <a href="@{Sales.myOrders(sale.id)}">${sale.date}</a></li>
 	#{/list}
 </ul>
+<a href="@{Coops.inventory(coop.id)}">See inventory</a>
 #{/else}

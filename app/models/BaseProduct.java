@@ -6,7 +6,7 @@ import play.data.validation.Required;
 import siena.*;
 import utils.QuantityType;
 
-public class BaseProduct extends Model {
+public class BaseProduct extends Model implements Comparable<BaseProduct> {
 
 	@Id(Generator.AUTO_INCREMENT)
 	public Long id;
@@ -47,5 +47,10 @@ public class BaseProduct extends Model {
 	@Override
 	public String toString() {
 		return name;
+	}
+
+	@Override
+	public int compareTo(BaseProduct other) {
+		return id.compareTo(other.id);
 	}
 }

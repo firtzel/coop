@@ -1,18 +1,20 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
-*      	/admin             						module:crudsiena
+*		/admin             						module:crudsiena
 
 # Home page
-GET     /                                       Application.index
-GET     /coops                                  Coops.list
-GET     /coops/{id}                             Coops.details
-GET     /sales/{id}								Sales.details
-GET     /sales/{id}/edit						Sales.edit
-POST     /sales/{id}/edit						Sales.save
-GET     /sales/{id}/total						Sales.total
-GET     /members                                Members.index
-GET     /init	                                Init.load
+GET		/										Application.index
+GET		/coops									Coops.list
+GET		/coops/{id}								Coops.details
+GET		/coops/{id}/inventory					Coops.inventory
+GET		/sales/{id}								Sales.myOrders
+GET		/sales/{id}/all							Sales.orders
+GET		/sales/{id}/edit						Sales.edit
+POST	/sales/{id}/edit						Sales.save
+GET		/sales/{id}/total						Sales.total
+GET		/members								Members.index
+GET		/init									Init.load
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

@@ -6,7 +6,9 @@ import siena.Generator;
 import siena.Id;
 import siena.Model;
 import siena.NotNull;
+import siena.Query;
 
+// this model is used to override the automatically-generated product.inventory field in the Product model
 public class ProductInventory extends Model {
 
 	@Id(Generator.AUTO_INCREMENT)
@@ -31,5 +33,9 @@ public class ProductInventory extends Model {
 		this.product = product;
 		this.quantityType = product.quantityType;
 		this.quantity = quantity;
+	}
+
+	public static Query<ProductInventory> all() {
+		return Model.all(ProductInventory.class);
 	}
 }

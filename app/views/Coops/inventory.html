@@ -5,7 +5,7 @@
 	<thead>
 		<th></th>
 		#{list items:sales, as:'sale'}
-		<th>${sale.date}</th>
+		<th><a href="@{Sales.orders(sale.id)}">${sale.date}</a></th>
 		#{/list}
 	</thead>
 	<tbody>
@@ -13,7 +13,13 @@
 		<tr>
 			<td>${product}</td>
 			#{list items:sales, as:'sale'}
-			<td>${intentory.get(sale).get(product)}</td>
+			%{ current = inventory.get(sale).get(product); }%
+			#{if current}
+			<td>${current}</td>
+			#{/if}
+			#{else}
+			<td>N/A</td>
+			#{/else}
 			#{/list}
 		</tr>
 		#{/list}

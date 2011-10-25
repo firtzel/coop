@@ -1,0 +1,32 @@
+#{extends 'main.html' /}
+#{set title:'Sale ' + sale.date /}
+
+#{if sale.products.count() == 0}
+	<p>No products</p>
+#{/if}
+#{else}
+<table>
+	<thead>
+		<th></th>
+		#{list items:members, as:'member'}
+		<th>${member}</th>
+		#{/list}
+	</thead>
+	<tbody>
+		#{list items:products, as:'product'}
+		<tr>
+			<td>${product}</td>
+			#{list items:members, as:'member'} 
+			%{ orders = memberOrders.get(member.id); }%
+			#{if orders && orders.containsKey(product.id)}
+			<td>${orders.get(product.id)}</td>
+			#{/if}
+			#{else}
+			<td>0</td>
+			#{/else}
+			#{/list}
+		</tr>
+		#{/list}
+	</tbody>
+</table>
+#{/else}

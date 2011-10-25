@@ -59,6 +59,10 @@ public class Sale extends Model {
 	@Override
 	public String toString() {
 		return "Date: " + DateUtils.DATE_FORMAT.format(date) + " Coop: "
-				+ Coop.all().getByKey(coop.id);
+				+ getCoop();
+	}
+
+	public Coop getCoop() {
+		return Coop.all().getByKey(coop.id);
 	}
 }
