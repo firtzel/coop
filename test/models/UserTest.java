@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import play.modules.siena.SienaFixtures;
 import play.test.UnitTest;
+import utils.TestUtils;
 
 public class UserTest extends UnitTest {
 
@@ -22,7 +23,7 @@ public class UserTest extends UnitTest {
 
 	@Test
 	public void getMember1() {
-		Member member = Member.all().filter("name", "Dayan").get();
+		Member member = TestUtils.getMember("Dayan");
 		assertNotNull(member);
 		assertEquals(1, member.users.count());
 		assertEquals("[ben@gmail.com (Dayan)]", member.users.fetch().toString());
@@ -30,7 +31,7 @@ public class UserTest extends UnitTest {
 
 	@Test
 	public void getMember2() {
-		Member member = Member.all().filter("name", "Rosen").get();
+		Member member = TestUtils.getMember("Rosen");
 		assertNotNull(member);
 		assertEquals(2, member.users.count());
 		assertEquals("[bob@gmail.com (Rosen), dude@gmail.com (Rosen)]", member.users.fetch().toString());

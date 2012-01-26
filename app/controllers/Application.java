@@ -3,26 +3,32 @@ package controllers;
 import play.*;
 import play.modules.gae.GAE;
 import play.mvc.*;
+import utils.LoginManager;
 
 import java.util.*;
+
+import javax.inject.Inject;
 
 import models.*;
 
 public class Application extends Controller {
+	
+	@Inject
+	private static LoginManager loginManager;
 
     public static void index() {
-        if(GAE.isLoggedIn()) {
+        if(loginManager.isLoggedIn()) {
             Members.index();
         }
         render();
     }
 
     public static void login() {
-        GAE.login("Application.index");
+    	loginManager.login("Application.index");
     }
     
     public static void logout() {
-        GAE.logout("Application.index");
+    	loginManager.logout("Application.index");
     }
 
 	public static void loginError(String account) {

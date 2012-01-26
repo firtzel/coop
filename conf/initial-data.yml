@@ -134,7 +134,7 @@ ProductOrder(bread-1-2):
 
 ProductOrder(lentils-2-1):
   member: dayan
-  sale: first
+  sale: second
   product: lentils-2
   quantity: 1.5
   quantityType: kg

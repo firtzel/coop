@@ -1,6 +1,9 @@
 package models;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.TimeZone;
 
 import play.data.validation.Required;
@@ -64,5 +67,26 @@ public class Sale extends Model {
 
 	public Coop getCoop() {
 		return Coop.all().getByKey(coop.id);
+	}
+
+	public Query<ProductOrder> getMemberOrders(Member member) {
+		return productOrders.filter("member", member);
+	}
+
+	public Query<Member> getMembers() {
+		 return getCoop().members;
+	}
+
+	public Map<Long, Map<Long, ProductOrder>> getOrdersByMember() {
+		List<ProductOrder> orders = productOrders.fetch();
+		Map<Long, Map<Long, ProductOrder>> memberOrders = new HashMap<Long, Map<Long, ProductOrder>>();
+		for (ProductOrder order : orders) {
+			Long memberId = order.member.id;
+			if (!memberOrders.containsKey(memberId)) {
+				memberOrders.put(memberId, new HashMap<Long, ProductOrder>());
+			}
+			memberOrders.get(memberId).put(order.product.id, order);
+		}
+		return memberOrders;
 	}
 }

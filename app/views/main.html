@@ -12,7 +12,7 @@
     </head>
     <body>
     	#{if user}
-    	<p>${user}</p>
+    	<p>${user} | <a href="@{Application.logout}">Logout</a></p>
     	#{/if}
     	#{else}
     	<p><a href="@{application.login}">login</a></p>

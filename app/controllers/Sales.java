@@ -25,23 +25,16 @@ public class Sales extends ConnectedController {
 
 	public static void myOrders(Long id) {
 		Sale sale = Sale.all().getByKey(id);
-		Query<ProductOrder> productOrders = sale.productOrders.filter("member", getMember());
-		renderTemplate("sales/my_orders.html", sale, productOrders);
+		List<Product> products = sale.products.fetch();
+		List<ProductOrder> productOrders = sale.getMemberOrders(getMember()).fetch();
+		renderTemplate("sales/my_orders.html", sale, products, productOrders);
 	}
 
 	public static void orders(Long id) {
 		Sale sale = Sale.all().getByKey(id);
 		List<Product> products = sale.products.fetch();
-		List<ProductOrder> productOrders = sale.productOrders.fetch();
-		List<Member> members = sale.getCoop().members.fetch();
-		Map<Long, Map<Long, ProductOrder>> memberOrders = new HashMap<Long, Map<Long, ProductOrder>>();
-		for (ProductOrder order : productOrders) {
-			Long memberId = order.member.id;
-			if (!memberOrders.containsKey(memberId)) {
-				memberOrders.put(memberId, new HashMap<Long, ProductOrder>());
-			}
-			memberOrders.get(memberId).put(order.product.id, order);
-		}
+		List<Member> members = sale.getMembers().fetch();
+		Map<Long, Map<Long, ProductOrder>> memberOrders = sale.getOrdersByMember();
 		renderTemplate("sales/orders.html", sale, members, products, memberOrders);
 	}
 

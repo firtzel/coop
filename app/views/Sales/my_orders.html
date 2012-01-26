@@ -7,19 +7,19 @@
 #{else}
 <p>Products
 <ul>
-	#{list items:sale.products.fetch(), as:'product'}
+	#{list items:products, as:'product'}
 		<li>${product.id} ${product}</li>
 	#{/list}
 </ul>
 #{/else}
 
-#{if (productOrders.count() == 0)}
+#{if (productOrders.isEmpty())}
 	<p>No order has been placed</p>
 #{/if}
 #{else}
 <p>Current Order:
 <ul>
-	#{list items:productOrders.fetch(), as:'product'}
+	#{list items:productOrders, as:'product'}
 		<li>${product.id} ${product}</li>
 	#{/list}
 </ul>
