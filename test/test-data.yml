@@ -1,0 +1,168 @@
+###
+# Coop, CoopGroup 
+
+CoopGroup(empty):
+  title: empty
+  description: testing
+
+CoopGroup(group):
+  title: group
+  description: testing
+
+Coop(first):
+  title: first
+  description: first coop
+  group: group
+
+Coop(second):
+  title: second
+  description: second coop
+
+Coop(third):
+  title: third
+  description: third coop
+  group: group
+
+###
+# Member, User
+
+Member(me):
+  name: me
+  coop: first
+
+Member(rosen):
+  name: Rosen
+  coop: first
+
+Member(dayan):
+  name: Dayan
+  coop: first
+
+User(me):
+  account: test@gmail.com
+  member: me
+
+User(bob):
+  account: bob@gmail.com
+  member: rosen
+
+User(dude):
+  account: dude@gmail.com
+  member: rosen
+
+User(ben):
+  account: ben@gmail.com
+  member: dayan
+
+###
+# Sale, BaseProduct, Product
+
+Sale(empty):
+  coop: first
+  date: 2011-02-01
+
+Sale(first):
+  coop: first
+  date: 2011-02-08
+
+Sale(second):
+  coop: first
+  date: 2011-02-15
+
+BaseProduct(lentils):
+  name: lentils
+  quantityType: kg
+
+BaseProduct(bread):
+  name: bread
+  quantityType: units
+
+BaseProduct(butter):
+  name: butter
+  quantityType: units
+
+Product(lentils-1):
+  baseProduct: lentils
+  sale: first
+  quantityType: kg
+
+Product(lentils-2):
+  baseProduct: lentils
+  sale: second
+  quantityType: kg
+
+Product(bread-1):
+  baseProduct: bread
+  sale: first
+  quantityType: units
+
+Product(butter-2):
+  baseProduct: butter
+  sale: second
+  quantityType: units
+
+###
+# ProductOrder
+
+ProductOrder(lentils-1-1):
+  member: me
+  sale: first
+  product: lentils-1
+  quantity: 1.5
+  quantityType: kg
+
+ProductOrder(lentils-1-2):
+  member: dayan
+  sale: first
+  product: lentils-1
+  quantity: 2.5
+  quantityType: kg
+
+ProductOrder(bread-1-1):
+  member: me
+  sale: first
+  product: bread-1
+  quantity: 3
+  quantityType: units
+
+ProductOrder(bread-1-2):
+  member: dayan
+  sale: first
+  product: bread-1
+  quantity: 2
+  quantityType: units
+
+ProductOrder(lentils-2-1):
+  member: dayan
+  sale: second
+  product: lentils-2
+  quantity: 1.5
+  quantityType: kg
+
+ProductOrder(lentils-2-2):
+  member: rosen
+  sale: second
+  product: lentils-2
+  quantity: 3
+  quantityType: kg
+
+ProductOrder(butter-2-1):
+  member: rosen
+  sale: second
+  product: butter-2
+  quantity: 2
+  quantityType: units
+
+ProductOrder(butter-2-2):
+  member: dayan
+  sale: second
+  product: butter-2
+  quantity: 3
+  quantityType: units
+
+ProductOrder(butter-2-3):
+  member: me
+  sale: second
+  product: butter-2
+  quantity: 5
+  quantityType: units
