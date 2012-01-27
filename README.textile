@@ -1,3 +1,31 @@
+h1. Screens
+
+h2. Homepage
+
+Currently shows either:
+* A login page for an unlogged user, or
+* A list of the user's memberships in the existing coops
+
+h2. Member details
+
+Shows the different coops the member is in, and the different users under this member
+
+h2. Coop main page
+
+Shows all the associated members and sales
+
+h2. Coop inventory page
+
+Shows the coop's product inventory with respect to the coop's sales (orders and purchases)
+
+h2. Sale - My orders
+
+h2. Sale - edit my order
+
+h2. Sale - total orders
+
+h1. Models
+
 h2. Users and roles:
 
 * Users with access to admin pages can modify data (need admin password)
@@ -22,5 +50,12 @@ h2. Order, ProductOrder:
 * a *ProductOrder* is associated to an Order and a Product, and contains the desired Quantity 
 * an *Order* is associated to a Member and a Sale, and contains the order date
 
-h2. Supplier ...
- 
+h1. What's next (notes to self)
+
+h2. add data of suppliers and purchases, and a way to add and view them (can already be viewed in the inventory page)
+
+h2. refresh my memory of the current system, to see what we're missing - and start filling in the gaps
+
+h2. add some nice design
+
+h2. play around with angular.js to improve UI
