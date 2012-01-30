@@ -5,7 +5,7 @@
 	<thead>
 		<th></th>
 		#{list items:sales, as:'sale'}
-		<th><a href="@{Sales.orders(sale.id)}">${sale.date}</a></th>
+		<th><a href="@{Sales.allOrders(sale.id)}">${sale.date}</a></th>
 		#{/list}
 	</thead>
 	<tbody>

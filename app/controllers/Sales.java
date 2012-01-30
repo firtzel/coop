@@ -30,14 +30,6 @@ public class Sales extends ConnectedController {
 		renderTemplate("sales/my_orders.html", sale, products, productOrders);
 	}
 
-	public static void orders(Long id) {
-		Sale sale = Sale.all().getByKey(id);
-		List<Product> products = sale.products.fetch();
-		List<Member> members = sale.getMembers().fetch();
-		Map<Long, Map<Long, ProductOrder>> memberOrders = sale.getOrdersByMember();
-		renderTemplate("sales/orders.html", sale, members, products, memberOrders);
-	}
-
 	public static void edit(Long id) {
 		Sale sale = Sale.all().getByKey(id);
 		Map<Product, String> productTypes = new HashMap<Product, String>();
@@ -80,7 +72,7 @@ public class Sales extends ConnectedController {
 		myOrders(id);
 	}
 
-	public static void total(Long id) {
+	public static void allOrders(Long id) {
 		Sale sale = Sale.all().getByKey(id);
 		List<ProductOrder> productOrders = sale.productOrders.fetch();
 		List<Product> products = sale.products.fetch();
@@ -88,7 +80,7 @@ public class Sales extends ConnectedController {
 		Map<Product, Float> totals = new HashMap<Product, Float>();
 		Map<Product, Map<Member, ProductOrder>> ordersMap = buildOrdersMap(
 				products, productOrders, members, totals);
-		render(sale, ordersMap, members, totals);
+		renderTemplate("sales/all_orders.html", sale, ordersMap, members, totals);
 	}
 
 	private static Map<Product, Map<Member, ProductOrder>> buildOrdersMap(
