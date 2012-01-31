@@ -1,29 +1,17 @@
 package controllers;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
-
-import controllers.inventory.Inventory;
-import controllers.inventory.InventoryCalculator;
-import controllers.inventory.InventoryResult;
-
-import siena.Query;
 
 import models.BaseProduct;
 import models.Coop;
 import models.Member;
-import models.Product;
-import models.ProductInventory;
-import models.ProductOrder;
-import models.ProductPurchase;
 import models.Sale;
+import controllers.inventory.Inventory;
+import controllers.inventory.InventoryCalculator;
+import controllers.inventory.InventoryResult;
 
 public class Coops extends ConnectedController {
 

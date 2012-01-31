@@ -8,7 +8,7 @@
 <p>Products
 <ul>
 	#{list items:products, as:'product'}
-		<li>${product.id} ${product}</li>
+		<li>${product}</li>
 	#{/list}
 </ul>
 #{/else}
@@ -20,7 +20,7 @@
 <p>Current Order:
 <ul>
 	#{list items:productOrders, as:'product'}
-		<li>${product.id} ${product}</li>
+		<li>${product}</li>
 	#{/list}
 </ul>
 #{/else}

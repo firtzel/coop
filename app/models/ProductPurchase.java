@@ -36,10 +36,10 @@ public class ProductPurchase extends Model {
 	@NotNull
 	public Supplier supplier;
 
-	@Column("product")
+	@Column("base_product")
 	@Required
 	@NotNull
-	public Product product;
+	public BaseProduct baseProduct;
 
 	@Column("quantity")
 	@Required
@@ -51,13 +51,14 @@ public class ProductPurchase extends Model {
 	@NotNull
 	public String quantityType;
 
-	public ProductPurchase(Date date, Sale sale, float price, Supplier supplier, Product product, float quantity) {
+	public ProductPurchase(Date date, Sale sale, float price,
+			Supplier supplier, BaseProduct baseProduct, float quantity) {
 		this.date = new Date(date.getTime());
 		this.sale = sale;
 		this.price = price;
 		this.supplier = supplier;
-		this.product = product;
-		this.quantityType = product.quantityType;
+		this.baseProduct = baseProduct;
+		this.quantityType = baseProduct.quantityType;
 		this.quantity = quantity;
 	}
 }

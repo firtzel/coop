@@ -1,0 +1,8 @@
+h2. Deploy an initial version to GAE 
+
+Still only running on my PC...
+
+h2. Optimize queries
+
+I don't really know which queries are run in each scenario, which might result in performance problems.
+ 

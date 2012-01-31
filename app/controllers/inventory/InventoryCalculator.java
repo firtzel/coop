@@ -28,7 +28,7 @@ public class InventoryCalculator {
 			List<Product> saleProducts = sale.products.fetch();
 			for (Product product : saleProducts) {
 				BaseProduct baseProduct = BaseProduct.all().getByKey(product.baseProduct.id);
-				float totalPurchases = calcTotalPurchases(sale, product);
+				float totalPurchases = calcTotalPurchases(sale, baseProduct);
 				float totalOrders = calcTotalOrders(sale, product);
 				float currInventory = getProductInventory(product);
 				// Show: (product inventory) + currProductPurchases.quantity - productOrders.quantity 
@@ -49,8 +49,8 @@ public class InventoryCalculator {
 		return total;
 	}
 
-	private static float calcTotalPurchases(Sale sale, Product product) {
-		List<ProductPurchase> productPurchases = sale.productPurchases.filter("product", product).fetch();
+	private static float calcTotalPurchases(Sale sale, BaseProduct baseProduct) {
+		List<ProductPurchase> productPurchases = sale.productPurchases.filter("baseProduct", baseProduct).fetch();
 		float total = 0;
 		for (ProductPurchase productPurchase : productPurchases) {
 			total += productPurchase.quantity;

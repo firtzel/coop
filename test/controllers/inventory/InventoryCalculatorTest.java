@@ -39,10 +39,10 @@ public class InventoryCalculatorTest extends FunctionalTest {
 		assertEquals("[lentils, bread, butter]", bp.toString());
 		assertEquals("{}", inventoryResult.getInventory().get(sales.get(0)).toString());
 		Map<BaseProduct, Inventory> firstInv = inventoryResult.getInventory().get(sales.get(1));
-		assertEquals("Inventory{current=0.0, purchases=0.0, orders=4.0}", firstInv.get(bp.get(0)).toString());
-		assertEquals("Inventory{current=0.0, purchases=0.0, orders=5.0}", firstInv.get(bp.get(1)).toString());
+		assertEquals("Inventory{current=0.0, purchases=20.0, orders=4.0}", firstInv.get(bp.get(0)).toString());
+		assertEquals("Inventory{current=0.0, purchases=10.0, orders=5.0}", firstInv.get(bp.get(1)).toString());
 		Map<BaseProduct, Inventory> secondInv = inventoryResult.getInventory().get(sales.get(2));
-		assertEquals("Inventory{current=0.0, purchases=0.0, orders=4.5}", secondInv.get(bp.get(0)).toString());
-		assertEquals("Inventory{current=0.0, purchases=0.0, orders=10.0}", secondInv.get(bp.get(2)).toString());
+		assertEquals("Inventory{current=0.0, purchases=5.0, orders=4.5}", secondInv.get(bp.get(0)).toString());
+		assertEquals("Inventory{current=0.0, purchases=8.0, orders=10.0}", secondInv.get(bp.get(2)).toString());
 	}
 }

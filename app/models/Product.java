@@ -28,7 +28,7 @@ public class Product extends Model {
 	@NotNull
 	public float price;
 
-	// inventory - the product quantity, excluding purchases from suppliers and members orders 
+	// inventory - the product quantity, excluding purchases from suppliers and members orders
 	@Column("inventory")
 	@Required
 	@NotNull

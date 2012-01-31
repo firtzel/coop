@@ -51,10 +51,10 @@ public class SalesTest extends FunctionalTest {
 	@Test
 	public void myOrders() throws ParseException {
 		Sale first = TestUtils.getFirstSale();
-		Response response = GET(String.format("/sales/%d", first.id));
+		Response response = GET(String.format("/sales/%d/mine", first.id));
 		assertStatus(HttpURLConnection.HTTP_MOVED_TEMP, response);
 		login();
-		response = GET(String.format("/sales/%d", first.id));
+		response = GET(String.format("/sales/%d/mine", first.id));
 		assertStatus(HttpURLConnection.HTTP_OK, response);
 	}
 

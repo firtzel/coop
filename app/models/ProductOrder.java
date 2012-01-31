@@ -39,7 +39,7 @@ public class ProductOrder extends Model {
 	@NotNull
 	public String quantityType;
 
-	public ProductOrder(Product product, Member member, Sale sale, float quantity) { //, Order order) {
+	public ProductOrder(Product product, Member member, Sale sale, float quantity) {
 		this.product = product;
 		this.member = member;
 		this.sale = sale;

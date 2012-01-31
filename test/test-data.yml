@@ -166,3 +166,54 @@ ProductOrder(butter-2-3):
   product: butter-2
   quantity: 5
   quantityType: units
+
+Supplier(sasson):
+  name: sasson
+
+Supplier(shosh):
+  name: shosh
+
+ProductPurchase(lentils-1):
+  date: 2011-01-30
+  sale: first
+  price: 5
+  supplier: sasson
+  baseProduct: lentils
+  quantityType: kg
+  quantity: 20
+
+ProductPurchase(lentils-2):
+  date: 2011-02-09
+  sale: second
+  price: 5
+  supplier: sasson
+  baseProduct: lentils
+  quantityType: kg
+  quantity: 5
+
+ProductPurchase(bread-1):
+  date: 2011-01-30
+  sale: first
+  price: 9
+  supplier: shosh
+  baseProduct: bread
+  quantityType: units
+  quantity: 10
+
+ProductPurchase(butter-1):
+  date: 2011-01-30
+  sale: first
+  price: 7
+  supplier: shosh
+  baseProduct: butter
+  quantityType: units
+  quantity: 6
+
+ProductPurchase(butter-2):
+  date: 2011-02-09
+  sale: second
+  price: 7
+  supplier: shosh
+  baseProduct: butter
+  quantityType: units
+  quantity: 8
