@@ -54,4 +54,12 @@ public class SaleTest extends UnitTest {
 		assertMemberOrdersCount(sale, "Dayan", 2);
 		assertMemberOrdersCount(sale, "Rosen", 0);
 	}
+
+	@Test
+	public void testGetMemberDetails() {
+		Sale sale = TestUtils.getFirstSale();
+		MemberSaleDetails details = sale.getMemberDetails(TestUtils.getMember("me"));
+		assertEquals(true, details.orderTaken);
+		assertEquals("", details.comment);
+	}
 }

@@ -232,35 +232,55 @@ ProductPurchase(butter-2):
 # MemberSaleDetails (payments, debts, etc.)
 
 MemberSaleDetails(me-1):
+  member: me
   sale: first
+  ordered: true
+  orderTaken: true
   payment: 10
   debt: 0
-  member: me
+  comment: ""
 
 MemberSaleDetails(me-2):
+  member: me
   sale: second
+  ordered: true
+  orderTaken: true
   payment: 8
   debt: 5
-  member: me
+  comment: ""
 
 MemberSaleDetails(rosen-1):
-  sale: first
-  debt: 0
   member: rosen
+  sale: first
+  ordered: true
+  orderTaken: false
+  payment: 0
+  debt: 0
+  comment: ""
 
 MemberSaleDetails(rosen-2):
+  member: rosen
   sale: second
+  ordered: true
+  orderTaken: true
   payment: 12
   debt: 3
-  member: rosen
+  comment: ""
 
 MemberSaleDetails(simon-1):
-  sale: first
-  debt: 0
   member: simon
+  sale: first
+  ordered: true
+  orderTaken: false
+  payment: 0
+  debt: 0
+  comment: ""
 
 MemberSaleDetails(simon-2):
+  member: simon
   sale: second
+  ordered: true
+  orderTaken: true
   payment: 15
   debt: -2
-  member: simon
+  comment: ""
