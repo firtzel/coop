@@ -23,9 +23,17 @@ public class Member extends Model implements Comparable<Member> {
 	@NotNull
 	public Coop coop;
 
-	@Filter("member")
-	Query<User> users;
+	@Column("phone_number")
+	@Required
+	@NotNull
+	public String phoneNumber;
 
+	@Filter("member")
+	public Query<User> users;
+
+	@Filter("member")
+	public Query<MemberSaleDetails> saleDetails;
+	
 	public Member(String name, Coop coop) {
 		this.name = name;
 		this.coop = coop;

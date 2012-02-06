@@ -10,6 +10,7 @@ public class Init extends Controller {
 
     public static void load() {
     	Bootstrap.loadInitialData();
+    	Application.login();
     	render();
     }
 }

@@ -1,0 +1,79 @@
+#{extends 'main.html' /}
+#{set title:'Sale ' + sale.date /}
+
+#{if sale.products.count() == 0}
+<p>No products in this sale</p>
+#{/if}
+#{else}
+#{set 'moreScripts'}
+<script type="text/javascript">
+var saleId = ${sale.id};
+function SalesManageCtrl($xhr) {
+  var self = this;
+  self.url = "@{Sales.manageJson(sale.id)}";
+  $xhr('GET', self.url, function(code, response) {
+	self.data = response;
+  });
+
+  self.save = function() { 
+	$.ajax({
+		type: "POST",
+		url: "@{Sales.manageSave(sale.id)}",
+		data: {'data': JSON.stringify(self.data)},
+		dataType: "text",
+		success: function(response) {
+			// TODO show a message instead of alert("response: " + response);
+		},
+		error: function() {
+			alert("Error while saving data");
+		}
+	});
+  }
+}
+</script>
+#{/set}
+<div ng:controller="SalesManageCtrl">
+
+  <table>
+    <caption>Sale: ${sale}</caption>
+    <thead>
+      <tr>
+        <th></th>
+        <th ng:repeat="member in data.memberDetails">{{member.name}}</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Phone Number</td>
+        <td ng:repeat="member in data.memberDetails">{{member.phoneNumber}}</td>
+      </tr>
+      <tr>
+        <td>Order Taken?</td>
+        <td ng:repeat="member in data.memberDetails">{{member.ordered}}</td>
+      </tr>
+      <tr>
+        <td>Order Price</td>
+        <td ng:repeat="member in data.memberDetails">{{member.orderPrice}}</td>
+      </tr>
+      <tr>
+        <td>Paid</td>
+        <td ng:repeat="member in data.memberDetails"><input type="text" name="member.payment" value="{{member.payment}}" /></td>
+      </tr>
+      <tr>
+        <td>Previous Debt</td>
+        <td ng:repeat="member in data.memberDetails">{{member.debt}}</td>
+      </tr>
+      <tr>
+        <td>Current Debt</td>
+        <td ng:repeat="member in data.memberDetails">{{member.orderPrice + member.debt - member.payment}}</td>
+      </tr>
+      <tr>
+        <td>Comments</td>
+        <td ng:repeat="member in data.memberDetails"><input type="text" name="member.comment" /></td>
+      </tr>
+    </tbody>
+  </table>
+  <button ng:click="save()">Save</button>
+  <script src="@{'/public/javascripts/angular-0.9.19.js'}" type="text/javascript" ng:autobind></script>
+</div>
+#{/else}

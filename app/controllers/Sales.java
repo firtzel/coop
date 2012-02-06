@@ -1,25 +1,23 @@
 package controllers;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 
 import models.BaseProduct;
-import models.Coop;
-import models.Product;
 import models.Member;
+import models.MemberSaleDetails;
+import models.Product;
 import models.ProductOrder;
 import models.Sale;
-import models.User;
-
 import play.Logger;
-import play.modules.gae.GAE;
-import play.mvc.Before;
 
-import siena.Query;
+import com.google.gson.Gson;
+
+import controllers.sale.DataManipulator;
+import dto.SaleDetailsDto;
+import dto.SaleDetailsDto.MemberSaleDetailsDto;
 
 public class Sales extends ConnectedController {
 
@@ -32,12 +30,13 @@ public class Sales extends ConnectedController {
 
 	public static void edit(Long id) {
 		Sale sale = Sale.all().getByKey(id);
+		Member member = getMember();
 		Map<Product, String> productTypes = new HashMap<Product, String>();
 		Map<Product, Float> productQuantities = new HashMap<Product, Float>();
 		for (Product product : sale.products.fetch()) {
 			BaseProduct baseProduct = BaseProduct.all().getByKey(product.baseProduct.id);
 			productTypes.put(product, baseProduct.quantityType);
-			ProductOrder productOrder = sale.productOrders.filter("member", getMember()).filter("product", product).get();
+			ProductOrder productOrder = sale.getMemberProductOrder(member, product);
 			productQuantities.put(product, (productOrder == null ? 0f : productOrder.quantity));
 		}
 		render(sale, productTypes, productQuantities);
@@ -49,9 +48,8 @@ public class Sales extends ConnectedController {
 		List<Product> products = sale.products.fetch();
 		for (Product product : products) {
 			String key = "quantity-" + product.id;
-			float quantity = Float.parseFloat(params.get(key)); // TODO break this to pieces
-			// TODO move this query to a method (repeats twice)
-			ProductOrder productOrder = sale.productOrders.filter("member", getMember()).filter("product", product).get();
+			float quantity = Float.parseFloat(params.get(key));
+			ProductOrder productOrder = sale.getMemberProductOrder(member, product);
 			if (quantity != 0f) {
 				Logger.info("Ordered quantity " + quantity + " of product " + product);
 				if (productOrder == null) {
@@ -76,30 +74,45 @@ public class Sales extends ConnectedController {
 		Sale sale = Sale.all().getByKey(id);
 		List<ProductOrder> productOrders = sale.productOrders.fetch();
 		List<Product> products = sale.products.fetch();
-		Set<Member> members = new TreeSet<Member>();
-		Map<Product, Float> totals = new HashMap<Product, Float>();
-		Map<Product, Map<Member, ProductOrder>> ordersMap = buildOrdersMap(
-				products, productOrders, members, totals);
+		Set<Member> members = DataManipulator.buildMemberSet(productOrders);
+		Map<Product, Float> totals = DataManipulator.buildTotalsMap(productOrders);
+		Map<Product, Map<Member, ProductOrder>> ordersMap = DataManipulator.buildOrdersMap(
+				products, productOrders);
 		renderTemplate("sales/all_orders.html", sale, ordersMap, members, totals);
 	}
 
-	private static Map<Product, Map<Member, ProductOrder>> buildOrdersMap(
-			List<Product> products, List<ProductOrder> productOrders, 
-			Set<Member> members, Map<Product, Float> totals) {
-		Map<Product, Map<Member, ProductOrder>> ordersMap = new HashMap<Product, Map<Member, ProductOrder>>();
-		for (Product product : products) {
-			ordersMap.put(product, new HashMap<Member, ProductOrder>());
+	public static void manage(Long id) {
+		Sale sale = Sale.all().getByKey(id);
+		List<Member> members = sale.coop.members.fetch();
+		render(sale, members);
+	}
+
+	// TODO remove duplicate code
+	public static void manageJson(Long id) {
+		Sale sale = Sale.all().getByKey(id);
+		List<Member> members = sale.coop.members.fetch();
+		List<ProductOrder> productOrders = sale.productOrders.fetch();
+		Set<Member> orderingMembers = DataManipulator.buildMemberSet(productOrders);
+		SaleDetailsDto saleDetails = new SaleDetailsDto();
+		for (Member member : members) {
+			// TODO move the "ordered" and "memberOrders" calculation elsewhere
+			boolean ordered = orderingMembers.contains(member);
+			float memberOrders = (ordered ? DataManipulator.calcMemberTotalOrder(member.id, productOrders) : 0);
+			MemberSaleDetails details = sale.getMemberDetails(member);
+			MemberSaleDetailsDto saleMemberDetails = new MemberSaleDetailsDto(member, ordered, memberOrders, details);
+			saleDetails.addMemberDetails(saleMemberDetails);
 		}
-		for (ProductOrder productOrder : productOrders) {
-			Member member = Member.all().getByKey(productOrder.member.id);
-			members.add(member);
-			Product product = Product.all().getByKey(
-					productOrder.product.id);
-			ordersMap.get(product).put(member, productOrder);
-			Float total = (totals.containsKey(product) ? totals.get(product) :  0f);
-			total += productOrder.quantity;
-			totals.put(product, total);
+		renderJSON(saleDetails);
+	}
+
+	public static void manageSave(Long id) {
+		Sale sale = Sale.all().getByKey(id);
+		String data = params.get("data");
+		SaleDetailsDto saleDetails = new Gson().fromJson(data, SaleDetailsDto.class);
+		for (MemberSaleDetailsDto details : saleDetails.getMemberDetails()) {
+			Member member = Member.all().getByKey(details.id);
+			sale.setDetails(member, details);
 		}
-		return ordersMap;
+		renderJSON("data saved");
 	}
 }

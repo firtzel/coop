@@ -28,14 +28,17 @@ Coop(third):
 
 Member(me):
   name: me
+  phoneNumber: 054-654321
   coop: first
 
 Member(rosen):
   name: Rosen
+  phoneNumber: 08-931909
   coop: first
 
 Member(dayan):
   name: Dayan
+  phoneNumber: 077-123456
   coop: first
 
 User(me):
@@ -85,21 +88,25 @@ Product(lentils-1):
   baseProduct: lentils
   sale: first
   quantityType: kg
+  price: 5
 
 Product(lentils-2):
   baseProduct: lentils
   sale: second
   quantityType: kg
+  price: 5.5
 
 Product(bread-1):
   baseProduct: bread
   sale: first
   quantityType: units
+  price: 7
 
 Product(butter-2):
   baseProduct: butter
   sale: second
   quantityType: units
+  price: 8
 
 ###
 # ProductOrder
@@ -166,3 +173,94 @@ ProductOrder(butter-2-3):
   product: butter-2
   quantity: 5
   quantityType: units
+
+###
+# Supplier, ProductPurchase
+
+Supplier(sasson):
+  name: sasson
+
+Supplier(shosh):
+  name: shosh
+
+ProductPurchase(lentils-1):
+  date: 2011-01-30
+  sale: first
+  price: 5
+  supplier: sasson
+  baseProduct: lentils
+  quantityType: kg
+  quantity: 20
+
+ProductPurchase(lentils-2):
+  date: 2011-02-09
+  sale: second
+  price: 5
+  supplier: sasson
+  baseProduct: lentils
+  quantityType: kg
+  quantity: 5
+
+ProductPurchase(bread-1):
+  date: 2011-01-30
+  sale: first
+  price: 9
+  supplier: shosh
+  baseProduct: bread
+  quantityType: units
+  quantity: 10
+
+ProductPurchase(butter-1):
+  date: 2011-01-30
+  sale: first
+  price: 7
+  supplier: shosh
+  baseProduct: butter
+  quantityType: units
+  quantity: 6
+
+ProductPurchase(butter-2):
+  date: 2011-02-09
+  sale: second
+  price: 7
+  supplier: shosh
+  baseProduct: butter
+  quantityType: units
+  quantity: 8
+
+###
+# MemberSaleDetails (payments, debts, etc.)
+
+MemberSaleDetails(me-1):
+  sale: first
+  payment: 10
+  debt: 0
+  member: me
+
+MemberSaleDetails(me-2):
+  sale: second
+  payment: 8
+  debt: 5
+  member: me
+
+MemberSaleDetails(dayan-2):
+  sale: first
+  payment: 15
+  debt: -2
+  member: dayan
+
+MemberSaleDetails(rosen-2):
+  sale: second
+  payment: 12
+  debt: 3
+  member: rosen
+
+MemberSaleDetails(dayan-1):
+  sale: first
+  debt: 0
+  member: dayan
+
+MemberSaleDetails(rosen-1):
+  sale: first
+  debt: 0
+  member: rosen

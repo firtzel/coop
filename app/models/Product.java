@@ -4,6 +4,7 @@ import play.data.validation.Required;
 import siena.Column;
 import siena.Generator;
 import siena.Id;
+import siena.Max;
 import siena.Model;
 import siena.NotNull;
 import siena.Query;

@@ -5,20 +5,32 @@
 	<thead>
 		<th></th>
 		#{list items:sales, as:'sale'}
-		<th><a href="@{Sales.allOrders(sale.id)}">${sale.date}</a></th>
+		<th colspan="3"><a href="@{Sales.allOrders(sale.id)}">${sale.date}</a></th>
 		#{/list}
 	</thead>
 	<tbody>
+		<tr>
+		<td></td>
+		#{list items:sales, as:'sale'}
+			<td>Current</td>
+			<td>Purchases</td>
+			<td>Orders</td>
+		#{/list}
+		</tr>
 		#{list items:baseProducts, as:'product'}
 		<tr>
-			<td>${product}</td>
+			<td>${product} (${product.quantityType})</td>
 			#{list items:sales, as:'sale'}
 			%{ current = inventory.get(sale).get(product); }%
 			#{if current}
-			<td>${current}</td>
+			<td>${current.current}</td>
+			<td>${current.purchases}</td>
+			<td>${current.orders}</td>
 			#{/if}
 			#{else}
-			<td>N/A</td>
+			<td>---</td>
+			<td>---</td>
+			<td>---</td>
 			#{/else}
 			#{/list}
 		</tr>

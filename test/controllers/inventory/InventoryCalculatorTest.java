@@ -13,9 +13,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import play.modules.siena.SienaFixtures;
-import play.test.FunctionalTest;
+import play.test.UnitTest;
 
-public class InventoryCalculatorTest extends FunctionalTest {
+public class InventoryCalculatorTest extends UnitTest {
 
 	@Before
 	public void setUp() {

@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TimeZone;
 
 import play.data.validation.Required;
 import siena.Column;
@@ -16,12 +15,9 @@ import siena.Model;
 import siena.NotNull;
 import siena.Query;
 import utils.DateUtils;
+import dto.SaleDetailsDto.MemberSaleDetailsDto;
 
 public class Sale extends Model {
-
-	// public enum Type { // TODO make this configurable
-	// DRY, FRESH
-	// }
 
 	@Id(Generator.AUTO_INCREMENT)
 	public Long id;
@@ -41,11 +37,14 @@ public class Sale extends Model {
 	public Query<Product> products;
 
 	@Filter("sale")
-	public Query<ProductOrder> productOrders; // TODO add test for this
+	public Query<ProductOrder> productOrders;
 
 	@Filter("sale")
-	public Query<ProductPurchase> productPurchases; // TODO add test for this
+	public Query<ProductPurchase> productPurchases;
 
+	@Filter("sale")
+	public Query<MemberSaleDetails> memberDetails;
+	
 	public Sale(Date date, Coop coop) {
 		this.date = new Date(date.getTime());
 		this.coop = coop;
@@ -88,5 +87,31 @@ public class Sale extends Model {
 			memberOrders.get(memberId).put(order.product.id, order);
 		}
 		return memberOrders;
+	}
+
+	public MemberSaleDetails getMemberDetails(Member member) {
+		MemberSaleDetails details = memberDetails.filter("member", member).get();
+		if (details == null) {
+			details = new MemberSaleDetails(this, member);
+		}
+		return details;
+	}
+
+	public void setDetails(Member member, MemberSaleDetailsDto detailsDto) {
+		MemberSaleDetails details = getMemberDetails(member);
+		if (details == null) {
+			details = new MemberSaleDetails(this, member);
+		}
+		details.ordered = detailsDto.ordered;
+		details.orderTaken = detailsDto.orderTaken;
+		details.orderPrice = detailsDto.orderPrice;
+		details.payment = detailsDto.payment;
+		details.debt = detailsDto.debt;
+		details.comment = detailsDto.comment.trim();
+		details.save();
+	}
+
+	public ProductOrder getMemberProductOrder(Member member, Product product) {
+		return productOrders.filter("member", member).filter("product", product).get();
 	}
 }
