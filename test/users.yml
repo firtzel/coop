@@ -5,12 +5,12 @@ Member(rosen):
   name: Rosen
   coop: first
 
-Member(dayan):
+Member(simon):
   name: Dayan
   coop: first
 
-User(bob):
-  account: bob@gmail.com
+User(josh):
+  account: josh@gmail.com
   member: rosen
 
 User(dude):
@@ -19,4 +19,4 @@ User(dude):
 
 User(ben):
   account: ben@gmail.com
-  member: dayan
+  member: simon

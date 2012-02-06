@@ -16,7 +16,7 @@ ProductOrder(bread-first):
   quantityType: units
 
 ProductOrder(lentils-second):
-  member: dayan
+  member: simon
   sale: first
   product: lentils
   quantity: 2

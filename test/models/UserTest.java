@@ -34,7 +34,7 @@ public class UserTest extends UnitTest {
 		Member member = TestUtils.getMember("Rosen");
 		assertNotNull(member);
 		assertEquals(2, member.users.count());
-		assertEquals("[bob@gmail.com (Rosen), dude@gmail.com (Rosen)]", member.users.fetch().toString());
+		assertEquals("[josh@gmail.com (Rosen), dude@gmail.com (Rosen)]", member.users.fetch().toString());
 	}
 
 	@Test
@@ -45,12 +45,12 @@ public class UserTest extends UnitTest {
 
 	@Test
 	public void fetchUsers() {
-		assertEquals("[bob@gmail.com (Rosen), dude@gmail.com (Rosen), ben@gmail.com (Dayan)]", User.all().fetch().toString());  
+		assertEquals("[josh@gmail.com (Rosen), dude@gmail.com (Rosen), ben@gmail.com (Dayan)]", User.all().fetch().toString());  
 	}
 
 	@Test
 	public void findByAccount() {
-		assertEquals("[Rosen]", User.findByAccount("bob@gmail.com").toString());
+		assertEquals("[Rosen]", User.findByAccount("josh@gmail.com").toString());
 		assertEquals("[Dayan]", User.findByAccount("ben@gmail.com").toString());
 		assertEquals("[]", User.findByAccount("nobody@gmail.com").toString());
 	}

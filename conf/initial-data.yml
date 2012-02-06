@@ -36,7 +36,7 @@ Member(rosen):
   phoneNumber: 08-931909
   coop: first
 
-Member(dayan):
+Member(simon):
   name: Dayan
   phoneNumber: 077-123456
   coop: first
@@ -45,8 +45,8 @@ User(me):
   account: test@gmail.com
   member: me
 
-User(bob):
-  account: bob@gmail.com
+User(josh):
+  account: josh@gmail.com
   member: rosen
 
 User(dude):
@@ -55,7 +55,7 @@ User(dude):
 
 User(ben):
   account: ben@gmail.com
-  member: dayan
+  member: simon
 
 ###
 # Sale, BaseProduct, Product
@@ -119,7 +119,7 @@ ProductOrder(lentils-1-1):
   quantityType: kg
 
 ProductOrder(lentils-1-2):
-  member: dayan
+  member: simon
   sale: first
   product: lentils-1
   quantity: 2.5
@@ -133,14 +133,14 @@ ProductOrder(bread-1-1):
   quantityType: units
 
 ProductOrder(bread-1-2):
-  member: dayan
+  member: simon
   sale: first
   product: bread-1
   quantity: 2
   quantityType: units
 
 ProductOrder(lentils-2-1):
-  member: dayan
+  member: simon
   sale: second
   product: lentils-2
   quantity: 1.5
@@ -161,7 +161,7 @@ ProductOrder(butter-2-1):
   quantityType: units
 
 ProductOrder(butter-2-2):
-  member: dayan
+  member: simon
   sale: second
   product: butter-2
   quantity: 3
@@ -243,11 +243,10 @@ MemberSaleDetails(me-2):
   debt: 5
   member: me
 
-MemberSaleDetails(dayan-2):
+MemberSaleDetails(rosen-1):
   sale: first
-  payment: 15
-  debt: -2
-  member: dayan
+  debt: 0
+  member: rosen
 
 MemberSaleDetails(rosen-2):
   sale: second
@@ -255,12 +254,13 @@ MemberSaleDetails(rosen-2):
   debt: 3
   member: rosen
 
-MemberSaleDetails(dayan-1):
+MemberSaleDetails(simon-1):
   sale: first
   debt: 0
-  member: dayan
+  member: simon
 
-MemberSaleDetails(rosen-1):
-  sale: first
-  debt: 0
-  member: rosen
+MemberSaleDetails(simon-2):
+  sale: second
+  payment: 15
+  debt: -2
+  member: simon
