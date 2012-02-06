@@ -5,6 +5,8 @@
 /eclipse/
 /test-result/
 /logs/
+/lib/
+/modules/
 /war/WEB-INF/appengine-generated/
 *.class
 *.pyc

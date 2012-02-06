@@ -2,13 +2,11 @@ h2. Deploy an initial version to GAE
 
 Still only running on my PC...
 
+h2. Add simple CSS
+
 h2. Optimize queries
 
 I don't really know which queries are run in each scenario, which might result in performance problems.
-
-h2. Get rid of Siena
-
-(a) not helping, (b) seems like a dead project
 
 h2. Complete data flow:
 
@@ -17,3 +15,7 @@ When a member edits her order, update MemberSaleDetails. Relevant information: o
 On sale day, relevant information to be edited: orderTaken, payment, comment
 
 Problems: what happens when a price is modified? (will not affect orderPrice, unless calculated every time)
+
+h2. Get rid of Siena (?!)
+
+Not sure it's helping (just in case we want to keep using GAE)

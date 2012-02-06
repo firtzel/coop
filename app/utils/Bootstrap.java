@@ -2,7 +2,6 @@ package utils;
 
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
-import play.modules.siena.SienaFixtures;
 import play.Logger;
 
 @OnApplicationStart(async = false)
