@@ -19,7 +19,7 @@ public class InventoryCalculatorTest extends UnitTest {
 
 	@Before
 	public void setUp() {
-//		SienaFixtures.deleteDatabase();
+		SienaFixtures.deleteDatabase();
 		SienaFixtures.loadModels("test-data.yml");
 	}
 
