@@ -15,6 +15,7 @@ import play.Logger;
 
 import com.google.gson.Gson;
 
+import controllers.response.SuccessResponse;
 import controllers.sale.DataManipulator;
 import dto.SaleDetailsDto;
 import dto.SaleDetailsDto.MemberSaleDetailsDto;
@@ -113,6 +114,6 @@ public class Sales extends ConnectedController {
 			Member member = Member.all().getByKey(details.id);
 			sale.setDetails(member, details);
 		}
-		renderJSON("data saved");
+		renderJSON(new SuccessResponse("Sale saved successfully"));
 	}
 }

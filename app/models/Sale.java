@@ -11,6 +11,7 @@ import siena.DateTime;
 import siena.Filter;
 import siena.Generator;
 import siena.Id;
+import siena.Max;
 import siena.Model;
 import siena.NotNull;
 import siena.Query;
@@ -28,6 +29,12 @@ public class Sale extends Model {
 	@DateTime
 	public Date date;
 
+	@Column("name")
+	@Required
+	@NotNull
+	@Max(100)
+	public String name;
+	
 	@Column("coop")
 	@Required
 	@NotNull
@@ -54,6 +61,14 @@ public class Sale extends Model {
 		return Model.all(Sale.class);
 	}
 
+	public static Sale getById(Long id) {
+		return all().getByKey(id);
+	}
+
+	public static Sale getByName(String name) {
+		return all().filter("name", name).get();
+	}
+	
 	public static Query<Sale> getByDate(Date date) {
 		return all().filter("date", date);
 	}

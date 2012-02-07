@@ -8,6 +8,9 @@ GET		/										Application.index
 GET		/coops									Coops.list
 GET		/coops/{id}								Coops.details
 GET		/coops/{id}/inventory					Coops.inventory
+GET		/coops/{id}/sale/new					Coops.newSale
+GET		/coops/{id}/sale/new.json				Coops.newSaleJson
+POST	/coops/{id}/sale/save					Coops.saveSale
 GET		/sales/{id}/mine						Sales.myOrders
 GET		/sales/{id}/all							Sales.allOrders
 GET		/sales/{id}/manage						Sales.manage

@@ -58,6 +58,14 @@ public class Coop extends Model {
 		return Model.all(Coop.class);
 	}
 
+	public static Coop getById(Long id) {
+		return all().getByKey(id);
+	}
+
+	public static Coop getByTitle(String title) {
+		return all().filter("title", title).get();
+	}
+
 	public Sale latestSale() {
 		return sales.order("-date").get();
 	}
@@ -75,7 +83,7 @@ public class Coop extends Model {
 	public static Collection<Coop> findByMember(Collection<Member> members) {
 		Collection<Coop> coops = new ArrayList<Coop>(members.size());
 		for (Member member : members) {
-			coops.add(Coop.all().getByKey(member.coop.id));
+			coops.add(getById(member.coop.id));
 		}
 		return coops;
 	}

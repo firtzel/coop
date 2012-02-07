@@ -1,13 +1,5 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
-
-import com.sun.istack.internal.Nullable;
-
 import play.data.validation.Required;
 import siena.Column;
 import siena.Filter;
@@ -39,6 +31,9 @@ public class CoopGroup extends Model {
 
 	@Filter("group")
 	public Query<Coop> coops;
+
+	@Filter("group")
+	public Query<BaseProduct> baseProducts;
 
 	public CoopGroup(String title, String description) {
 		this.title = title;

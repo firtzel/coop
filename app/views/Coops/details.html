@@ -2,26 +2,27 @@
 #{set title:'Coop ' + coop.title /}
 
 #{if coop.members.count() == 0}
-	<p>No members</p>
+  <p>No members</p>
 #{/if}
 #{else}
 <p>Members
 <ul>
-	#{list items:coop.members.fetch(), as:'member'}
-		<li>${member.id} ${member.name} ${member.users.fetch()}</li>
-	#{/list}
+  #{list items:coop.members.fetch(), as:'member'}
+  <li>${member.id} ${member.name} ${member.users.fetch()}</li>
+  #{/list}
 </ul>
 #{/else}
 
 #{if coop.sales.count() == 0}
-	<p>No sales</p>
+<p>No sales</p>
 #{/if}
 #{else}
 <p>Sales
 <ul>
-	#{list items:coop.sales.fetch(), as:'sale'}
-		<li><a href="@{Sales.myOrders(sale.id)}">${sale.date}</a> <a href="@{Sales.manage(sale.id)}">manage</a></li>
-	#{/list}
+  #{list items:coop.sales.fetch(), as:'sale'}
+  <li><a href="@{Sales.myOrders(sale.id)}">${sale.date}</a> <a href="@{Sales.manage(sale.id)}">manage</a></li>
+  #{/list}
+  <li><a href="@{Coops.newSale(coop.id)}">Create a new sale</a></li>
 </ul>
 <a href="@{Coops.inventory(coop.id)}">See inventory</a>
 #{/else}

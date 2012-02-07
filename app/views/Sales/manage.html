@@ -7,7 +7,6 @@
 #{else}
 #{set 'moreScripts'}
 <script type="text/javascript">
-var saleId = ${sale.id};
 function SalesManageCtrl($xhr) {
   var self = this;
   self.url = "@{Sales.manageJson(sale.id)}";
@@ -20,9 +19,9 @@ function SalesManageCtrl($xhr) {
 		type: "POST",
 		url: "@{Sales.manageSave(sale.id)}",
 		data: {'data': JSON.stringify(self.data)},
-		dataType: "text",
+		dataType: "json",
 		success: function(response) {
-			// TODO show a message instead of alert("response: " + response);
+			alert("message: " + response.message); // TODO something else here
 		},
 		error: function() {
 			alert("Error while saving data");

@@ -2,11 +2,11 @@
 #{set title:'Coops' /}
 
 #{ifnot coops}
-	<p>No coops</p>
+<p>No coops</p>
 #{/ifnot}
 
 <ul>
-	#{list items:coops, as:'coop'}
-		<li>${coop.id} <a href="@{Coops.details(coop.id)}">${coop.title}</a></li>
-	#{/list}
+  #{list items:coops, as:'coop'}
+  <li>${coop.id} <a href="@{Coops.details(coop.id)}">${coop.title}</a></li>
+  #{/list}
 </ul>

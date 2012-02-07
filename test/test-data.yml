@@ -9,6 +9,10 @@ CoopGroup(group):
   title: group
   description: testing
 
+CoopGroup(other):
+  title: other
+  description: testing
+
 Coop(first):
   title: first
   description: first coop
@@ -17,6 +21,7 @@ Coop(first):
 Coop(second):
   title: second
   description: second coop
+  group: other
 
 Coop(third):
   title: third
@@ -61,28 +66,34 @@ User(ben):
 # Sale, BaseProduct, Product
 
 Sale(empty):
+  name: empty
   coop: first
   date: 2011-02-01
 
 Sale(first):
+  name: first
   coop: first
   date: 2011-02-08
 
 Sale(second):
+  name: second
   coop: first
   date: 2011-02-15
 
 BaseProduct(lentils):
   name: lentils
   quantityType: kg
+  group: group
 
 BaseProduct(bread):
   name: bread
   quantityType: units
+  group: group
 
 BaseProduct(butter):
   name: butter
   quantityType: units
+  group: group
 
 Product(lentils-1):
   baseProduct: lentils

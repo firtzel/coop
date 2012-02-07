@@ -33,12 +33,17 @@ public class BaseProduct extends Model implements Comparable<BaseProduct> {
 	@NotNull
 	public float price;
 
-	public BaseProduct(String name, float price, float inventory, String quantityType) {
-		this.name = name;
-		this.price = price;
-		this.inventory = inventory;
-		this.quantityType = quantityType;
-	}
+	@Column("group")
+	@Required
+	@NotNull
+	public CoopGroup group;
+
+//	public BaseProduct(String name, float price, float inventory, String quantityType) {
+//		this.name = name;
+//		this.price = price;
+//		this.inventory = inventory;
+//		this.quantityType = quantityType;
+//	}
 
 	public static Query<BaseProduct> all() {
 		return Model.all(BaseProduct.class);
