@@ -58,5 +58,14 @@ public class SalesTest extends FunctionalTest {
 		assertStatus(HttpURLConnection.HTTP_OK, response);
 	}
 
-	// TODO add test for sale.getOrdersByMember()
+	@Test
+	public void testManageJson() {
+		Sale first = TestUtils.getFirstSale();
+		login();
+		Response response = GET(String.format("/sales/%d/manage.json", first.id));
+		assertStatus(HttpURLConnection.HTTP_OK, response);
+		assertContentEquals("{\"memberDetails\":[{\"id\":697,\"name\":\"me\",\"phoneNumber\":\"054-654321\",\"ordered\":true,\"orderTaken\":true,\"orderPrice\":28.5,\"payment\":10.0,\"debt\":0.0,\"comment\":\"\"}," +
+				"{\"id\":698,\"name\":\"Rosen\",\"phoneNumber\":\"08-931909\",\"ordered\":false,\"orderTaken\":false,\"orderPrice\":0.0,\"payment\":0.0,\"debt\":0.0,\"comment\":\"\"}," +
+				"{\"id\":699,\"name\":\"Dayan\",\"phoneNumber\":\"077-123456\",\"ordered\":true,\"orderTaken\":false,\"orderPrice\":26.5,\"payment\":0.0,\"debt\":0.0,\"comment\":\"\"}]}", response);
+	}
 }
