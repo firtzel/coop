@@ -1,0 +1,50 @@
+#{extends 'main.html' /}
+#{set title:'Coop ' + coop.title + ' : new sale' /}
+
+#{set 'moreScripts'}
+#{/set}
+
+<div ng:controller="NewSaleManageCtrl">
+  <table>
+    <thead>
+      <tr>
+        <th>Selected</th>
+        <th>Product</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng:repeat="product in data.productDetails">
+        <td><input type="checkbox" name="product.selected"></td>
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button ng:click="save()">Save</button>
+  <script src="@{'/public/javascripts/angular-0.9.19.js'}" type="text/javascript" ng:autobind></script>
+  <script type="text/javascript">
+  function NewSaleManageCtrl($xhr) {
+    var self = this;
+    self.url = "@{Coops.newSaleJson(coop.id)}";
+    $xhr('GET', self.url, function(code, response) {
+    self.data = response;
+    });
+
+    self.save = function() { 
+    	$.ajax({
+        	type: "POST",
+        	url: "@{Coops.saveSale(coop.id)}",
+        	data: {'data': JSON.stringify(self.data)},
+        	dataType: "json",
+        	success: function(response) {
+          		alert("message: " + response.message); // TODO something else here
+       		},
+        	error: function() {
+          		alert("Error while saving data");
+        	}
+    	});
+    }
+  }
+  </script>
+</div>
