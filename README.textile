@@ -52,10 +52,9 @@ h2. Order, ProductOrder:
 
 h1. What's next (notes to self)
 
-h2. add data of suppliers and purchases, and a way to add and view them (can already be viewed in the inventory page)
+see TODO.textile
 
-h2. refresh my memory of the current system, to see what we're missing - and start filling in the gaps
+h1. Oddities
 
-h2. add some nice design
-
-h2. play around with angular.js to improve UI
+After running @play dependencies@ we should also run:
+@rm -rf modules/guice-1.2/test@ otherwise @play auto-test@ fails

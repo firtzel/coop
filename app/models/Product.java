@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 import play.data.validation.Required;
 import siena.Column;
 import siena.Generator;

@@ -47,7 +47,8 @@ public class Coops extends ConnectedController {
 
 	public static void newSaleJson(Long id) {
 		Coop coop = Coop.getById(id);
-		NewSaleDetailsDto details = new NewSaleDetailsDto(coop);
+		Sale latestSale = coop.latestSale();
+		NewSaleDetailsDto details = new NewSaleDetailsDto(coop, latestSale);
 		renderJSON(details);
 	}
 

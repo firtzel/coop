@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -128,5 +129,14 @@ public class Sale extends Model {
 
 	public ProductOrder getMemberProductOrder(Member member, Product product) {
 		return productOrders.filter("member", member).filter("product", product).get();
+	}
+
+	public List<BaseProduct> baseProducts() {
+		List<Product> products = this.products.fetch();
+		List<BaseProduct> baseProducts = new ArrayList<BaseProduct>(products.size());
+		for (Product product : products) {
+			baseProducts.add(BaseProduct.getById(product.baseProduct.id));
+		}
+		return baseProducts;
 	}
 }

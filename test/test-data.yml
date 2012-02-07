@@ -84,16 +84,19 @@ BaseProduct(lentils):
   name: lentils
   quantityType: kg
   group: group
+  price: 4.5
 
 BaseProduct(bread):
   name: bread
   quantityType: units
   group: group
+  price: 6.5
 
 BaseProduct(butter):
   name: butter
   quantityType: units
   group: group
+  price: 7.5
 
 Product(lentils-1):
   baseProduct: lentils
