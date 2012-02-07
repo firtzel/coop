@@ -11,11 +11,11 @@ import models.BaseProduct;
 import models.Coop;
 import models.Member;
 import models.Sale;
-import controllers.dto.NewSaleDetailsDto;
 import controllers.inventory.Inventory;
 import controllers.inventory.InventoryCalculator;
 import controllers.inventory.InventoryResult;
 import controllers.response.SuccessResponse;
+import dto.NewSaleDetailsDto;
 
 public class Coops extends ConnectedController {
 
