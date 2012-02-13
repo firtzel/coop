@@ -6,11 +6,11 @@ import models.Sale;
 
 public class TestUtils {
 	public static Sale getFirstSale() {
-		return Sale.getByName("first");
+		return Sale.getByTitle("first");
 	}
 
 	public static Sale getEmptySale() {
-		return Sale.getByName("empty");
+		return Sale.getByTitle("empty");
 	}
 
 	public static Member getMember(String name) {

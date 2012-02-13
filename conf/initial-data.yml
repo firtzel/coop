@@ -66,17 +66,17 @@ User(ben):
 # Sale, BaseProduct, Product
 
 Sale(empty):
-  name: empty
+  title: empty
   coop: first
   date: 2011-02-01
 
 Sale(first):
-  name: first
+  title: first
   coop: first
   date: 2011-02-08
 
 Sale(second):
-  name: second
+  title: second
   coop: first
   date: 2011-02-15
 

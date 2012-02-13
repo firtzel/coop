@@ -32,11 +32,11 @@ public class Sale extends Model {
 	@DateTime
 	public Date date;
 
-	@Column("name")
+	@Column("title")
 	@Required
 	@NotNull
 	@Max(100)
-	public String name;
+	public String title;
 	
 	@Column("coop")
 	@Required
@@ -78,8 +78,8 @@ public class Sale extends Model {
 		return all().getByKey(id);
 	}
 
-	public static Sale getByName(String name) {
-		return all().filter("name", name).get();
+	public static Sale getByTitle(String title) {
+		return all().filter("title", title).get();
 	}
 	
 	public static Query<Sale> getByDate(Date date) {
