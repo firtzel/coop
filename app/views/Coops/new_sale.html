@@ -10,17 +10,20 @@
       <tr>
         <th>Selected</th>
         <th>Product</th>
-        <th>Price</th>
+        <th>Latest Price</th>
+        <th>Current Price</th>
       </tr>
     </thead>
     <tbody>
       <tr ng:repeat="product in data.productDetails">
         <td><input type="checkbox" name="product.selected"></td>
         <td>{{product.name}}</td>
-        <td>{{product.price}}</td>
+        <td>{{product.latestPrice}}</td>
+        <td><input type="text" name="product.currentPrice" value="{{product.currentPrice}}" /></td>
       </tr>
     </tbody>
   </table>
+  <p><label>Sale Date:</label><input type="text" name="data.date" value="{{data.date}}" /></p>
   <button ng:click="save()">Save</button>
   <script src="@{'/public/javascripts/angular-0.9.19.js'}" type="text/javascript" ng:autobind></script>
   <script type="text/javascript">
@@ -28,7 +31,7 @@
     var self = this;
     self.url = "@{Coops.newSaleJson(coop.id)}?sale=${saleId}";
     $xhr('GET', self.url, function(code, response) {
-    self.data = response;
+    	self.data = response;
     });
 
     self.save = function() { 

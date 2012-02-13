@@ -50,15 +50,9 @@ public class Coops extends ConnectedController {
 		render("coops/new_sale.html", coop, saleId);
 	}
 
-	public static void newSaleJson(Long id) {
+	public static void newSaleJson(Long id, Long saleId) {
 		Coop coop = getById(id);
-		Sale sale;
-		Long saleId = params.get("sale", Long.class);
-		if (saleId == null) {
-			sale = coop.latestSale();
-		} else {
-			sale = Sale.getById(Long.parseLong(params.get("sale")));
-		}
+		Sale sale = Sales.getById(saleId);
 		NewSaleDetailsDto details = new NewSaleDetailsDto(coop, sale);
 		renderJSON(details);
 	}
@@ -66,7 +60,8 @@ public class Coops extends ConnectedController {
 	public static void saveSale(Long id) {
 		Coop coop = getById(id);
 		NewSaleDetailsDto details = new Gson().fromJson(params.get("data"), NewSaleDetailsDto.class);
+		Sale sale = new Sale(details, coop);
 		// TODO create new sale here
-		renderJSON(new SuccessResponse("New sale created successfully"));
+		renderJSON(new SuccessResponse("Sale " + sale + " created successfully"));
 	}
 }

@@ -17,6 +17,8 @@ import siena.Model;
 import siena.NotNull;
 import siena.Query;
 import utils.DateUtils;
+import dto.NewSaleDetailsDto;
+import dto.NewSaleDetailsDto.ProductDetailsDto;
 import dto.SaleDetailsDto.MemberSaleDetailsDto;
 
 public class Sale extends Model {
@@ -53,9 +55,19 @@ public class Sale extends Model {
 	@Filter("sale")
 	public Query<MemberSaleDetails> memberDetails;
 	
-	public Sale(Date date, Coop coop) {
-		this.date = new Date(date.getTime());
+	public Sale(NewSaleDetailsDto details, Coop coop) {
 		this.coop = coop;
+		this.date = new Date(details.date.getTime());
+		this.save();
+		List<Product> newProducts = new ArrayList<Product>();
+		for (ProductDetailsDto productDetails : details.productDetails) {
+			if (productDetails.selected) {
+				BaseProduct baseProduct = BaseProduct.getById(productDetails.id);
+				Product newProduct = new Product(baseProduct, this, productDetails.currentPrice);
+				newProduct.save();
+				newProducts.add(newProduct);
+			}
+		}
 	}
 
 	public static Query<Sale> all() {

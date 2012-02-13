@@ -6,6 +6,7 @@
 # Home page
 GET		/										Application.index
 GET		/coops									Coops.list
+GET		/coop									Coops.details
 GET		/coops/{id}								Coops.details
 GET		/coop/inventory							Coops.inventory
 GET		/coops/{id}/inventory					Coops.inventory

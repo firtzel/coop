@@ -22,7 +22,7 @@ import dto.SaleDetailsDto.MemberSaleDetailsDto;
 
 public class Sales extends ConnectedController {
 
-	private static Sale getById(Long id) {
+	public static Sale getById(Long id) {
 		return (id != null ? Sale.getById(id) : getCoop().latestSale());
 	}
 
