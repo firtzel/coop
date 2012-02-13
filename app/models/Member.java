@@ -48,6 +48,10 @@ public class Member extends Model implements Comparable<Member> {
 		return Model.all(Member.class);
 	}
 
+	public static Member getById(Long id) {
+		return all().getByKey(id);
+	}
+
 	public static Collection<Member> findByUser(String account) {
 		return User.findByAccount(account);
 	}

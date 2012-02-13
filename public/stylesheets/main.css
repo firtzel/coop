@@ -1,0 +1,58 @@
+body {
+	font-family: 'Arial';
+	font-size: 80%;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+    border-top: 5px solid #67A927;    
+}
+
+div#main {
+    margin: 20px 20px;
+}
+
+div#header {
+	width: 1024px;
+	height: 60px;
+	margin: 0 auto;
+	border: solid 0px #cc0000;
+	position: relative;
+}
+
+div#user-actions {
+	text-align: right;
+	padding: 5px 0 0 0;
+	font-size: 0.9em;
+}
+
+div#top-nav {
+	width:1024px;
+	height:60px;
+	margin:0 auto;
+	border:solid 0px #cc0000;
+	position:relative;
+	z-index:999;
+}
+
+div#top-nav ul.nav {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+div#top-nav ul.nav li {
+	float:left;
+	position:relative;
+}
+
+div#top-nav ul.nav li a {
+	display:block;
+	color:#636774;
+	padding:22px 20px 20px 20px;
+	font-size:1.1em;
+	font-weight:bold;
+	background:url(../images/nav_sep.png) right center no-repeat;
+	border:solid 0px #cc0000;
+}

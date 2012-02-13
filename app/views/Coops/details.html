@@ -20,9 +20,12 @@
 <p>Sales
 <ul>
   #{list items:coop.sales.fetch(), as:'sale'}
-  <li><a href="@{Sales.myOrders(sale.id)}">${sale.date}</a> <a href="@{Sales.manage(sale.id)}">manage</a></li>
+  <li>
+    <a href="@{Sales.myOrders(sale.id)}">${sale.date}</a> <a href="@{Sales.manage(sale.id)}">manage</a>
+    <a href="@{Coops.newSale(coop.id)}?sale=${sale.id}">duplicate</a>
+  </li>
   #{/list}
-  <li><a href="@{Coops.newSale(coop.id)}">Create a new sale</a></li>
+  <li><a href="@{Coops.newSale(coop.id)}">Create a new sale from latest sale</a></li>
 </ul>
 <a href="@{Coops.inventory(coop.id)}">See inventory</a>
 #{/else}

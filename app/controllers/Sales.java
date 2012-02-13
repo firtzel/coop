@@ -22,15 +22,19 @@ import dto.SaleDetailsDto.MemberSaleDetailsDto;
 
 public class Sales extends ConnectedController {
 
+	private static Sale getById(Long id) {
+		return (id != null ? Sale.getById(id) : getCoop().latestSale());
+	}
+
 	public static void myOrders(Long id) {
-		Sale sale = Sale.all().getByKey(id);
+		Sale sale = getById(id);
 		List<Product> products = sale.products.fetch();
 		List<ProductOrder> productOrders = sale.getMemberOrders(getMember()).fetch();
 		renderTemplate("sales/my_orders.html", sale, products, productOrders);
 	}
 
 	public static void edit(Long id) {
-		Sale sale = Sale.all().getByKey(id);
+		Sale sale = Sale.getById(id);
 		Member member = getMember();
 		Map<Product, String> productTypes = new HashMap<Product, String>();
 		Map<Product, Float> productQuantities = new HashMap<Product, Float>();
@@ -44,7 +48,7 @@ public class Sales extends ConnectedController {
 	}
 
 	public static void save(Long id) {
-		Sale sale = Sale.all().getByKey(id);
+		Sale sale = Sale.getById(id);
 		Member member = getMember();
 		List<Product> products = sale.products.fetch();
 		for (Product product : products) {
@@ -72,7 +76,7 @@ public class Sales extends ConnectedController {
 	}
 
 	public static void allOrders(Long id) {
-		Sale sale = Sale.all().getByKey(id);
+		Sale sale = getById(id);
 		List<ProductOrder> productOrders = sale.productOrders.fetch();
 		List<Product> products = sale.products.fetch();
 		Set<Member> members = DataManipulator.buildMemberSet(productOrders);
@@ -83,14 +87,14 @@ public class Sales extends ConnectedController {
 	}
 
 	public static void manage(Long id) {
-		Sale sale = Sale.all().getByKey(id);
+		Sale sale = getById(id);
 		List<Member> members = sale.coop.members.fetch();
 		render(sale, members);
 	}
 
 	// TODO remove duplicate code
 	public static void manageJson(Long id) {
-		Sale sale = Sale.all().getByKey(id);
+		Sale sale = Sale.getById(id);
 		List<Member> members = sale.coop.members.fetch();
 		List<ProductOrder> productOrders = sale.productOrders.fetch();
 		Set<Member> orderingMembers = DataManipulator.buildMemberSet(productOrders);
@@ -107,7 +111,7 @@ public class Sales extends ConnectedController {
 	}
 
 	public static void manageSave(Long id) {
-		Sale sale = Sale.all().getByKey(id);
+		Sale sale = Sale.getById(id);
 		String data = params.get("data");
 		SaleDetailsDto saleDetails = new Gson().fromJson(data, SaleDetailsDto.class);
 		for (MemberSaleDetailsDto details : saleDetails.getMemberDetails()) {

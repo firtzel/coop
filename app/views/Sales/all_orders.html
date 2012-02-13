@@ -5,7 +5,7 @@
 	<p>No products</p>
 #{/if}
 #{else}
-<p>Products and Orders
+<p>Products and Orders</p>
 <table>
   <thead>
     <th></th>
@@ -17,18 +17,18 @@
   <tbody>
 	#{list items:ordersMap.keySet(), as:'product'}
 	<tr>
-	  <td>${product}</td>
+	  <td>${product} (${product.quantityType})</td>
 	  #{list items:members, as:'member'}
 	  <td>
 	  #{if ordersMap.containsKey(product) && ordersMap.get(product).containsKey(member)}
-	  ${ordersMap.get(product).get(member).quantity()}
+	  ${ordersMap.get(product).get(member).quantity}
 	  #{/if}
 	  #{else}
 	  None
 	  #{/else}
 	  </td>
 	  #{/list}
-	  <td>${totals.get(product)} ${product.quantityType}</td>
+	  <td>${totals.get(product)}</td>
 	</tr>
 	#{/list}
 	</tbody>

@@ -2,13 +2,13 @@
 #{set title:'Members' /}
 
 #{ifnot members}
-    <p class="info">
-        You don't have any members yet.
-    </p>
+  <p class="info">
+    You don't have any members yet.
+  </p>
 #{/ifnot}
 
 <ol id="members">
 #{list items:members, as:'member'}
-    <li><a href="@{Members.details(member.id)}">${member}</a> of coop <a href="@{Coops.details(member.coop.id)}">${member.coop.id}</a></li>
+  <li><a href="@{Members.details(member.id)}">${member}</a> of coop <a href="@{Coops.details(member.coop.id)}">${member.coop.id}</a></li>
 #{/list}
 </ol>

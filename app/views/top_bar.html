@@ -1,0 +1,21 @@
+<div id="header">
+  <div id="user-actions">
+    #{if user}
+    <p>${user} | ${coop.title} | <a href="@{Application.logout}">Logout</a></p>
+    #{/if}
+    #{else}
+    <p><a href="@{application.login}">login</a></p>
+    #{/else}
+  </div>
+</div>
+
+#{if user}
+<div id="top-nav">
+  <ul class="nav">
+    <li><a href="@{Coops.inventory()}">Coop Inventory</a></li>
+    <li><a href="@{Sales.myOrders()}">My Latest Order</a></li>
+    <li><a href="@{Sales.allOrders()}">Latest Sale Orders</a></li>
+    <li><a href="@{Sales.manage()}">Manage Latest Sale</a></li>
+  </ul>
+</div>
+#{/if}

@@ -2,6 +2,7 @@ package controllers;
 
 import javax.inject.Inject;
 
+import models.Coop;
 import models.Member;
 import models.User;
 import play.Logger;
@@ -27,7 +28,10 @@ public abstract class ConnectedController extends Application {
 				Application.loginError(account);
 			} else {
 				renderArgs.put("user", user);
-				renderArgs.put("member", user.member);
+				Member member = Member.getById(user.member.id);
+				renderArgs.put("member", member);
+				Coop coop = Coop.getById(member.coop.id);
+				renderArgs.put("coop", coop);
 			}
 		}
 	}
@@ -41,5 +45,9 @@ public abstract class ConnectedController extends Application {
 
 	static Member getMember() {
 		return renderArgs.get("member", Member.class);
+	}
+
+	static Coop getCoop() {
+		return renderArgs.get("coop", Coop.class);
 	}
 }
