@@ -1,4 +1,4 @@
-<div id="header">
+<div id="top_bar">
   <div id="user-actions">
     #{if user}
     <p>${user} | ${coop.title} | <a href="@{Application.logout}">Logout</a></p>
@@ -10,13 +10,15 @@
 </div>
 
 #{if user}
-<div id="top-nav">
-  <ul class="nav">
-    <li><a href="@{Coops.details()}">Coop Details</a></li>
-    <li><a href="@{Coops.inventory()}">Coop Inventory</a></li>
-    <li><a href="@{Sales.myOrders()}">My Latest Order</a></li>
-    <li><a href="@{Sales.allOrders()}">Latest Sale Orders</a></li>
-    <li><a href="@{Sales.manage()}">Manage Latest Sale</a></li>
-  </ul>
+<div id="nav-wrap">
+  <div id="top-nav">
+    <ul class="nav">
+      <li><a href="@{Coops.details()}">Coop Details</a></li>
+      <li><a href="@{Coops.inventory()}">Coop Inventory</a></li>
+      <li><a href="@{Sales.myOrders()}">My Latest Order</a></li>
+      <li><a href="@{Sales.allOrders()}">Latest Sale Orders</a></li>
+      <li><a href="@{Sales.manage()}">Manage Latest Sale</a></li>
+    </ul>
+  </div>
 </div>
 #{/if}

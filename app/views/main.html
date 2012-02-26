@@ -12,10 +12,15 @@
   </head>
   <body>
     <div id="main">
-      <div id="top_bar">
+      <div id="header">
       #{include 'top_bar.html' /}
       </div>
-      #{doLayout /}
+      <div id="content">
+        <div id="mainbar">
+          <h1>#{get 'header' /}</h1>
+          #{doLayout /}
+        </div>
+      </div>
     </div>
   </body>
 </html>

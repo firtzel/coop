@@ -1,5 +1,6 @@
 #{extends 'main.html' /}
 #{set title:'Sale ' + sale.date /}
+#{set header:'Sale ' + sale.date + ' : Products and Orders' /}
 
 #{if sale.products.count() == 0}
 	<p>No products</p>
